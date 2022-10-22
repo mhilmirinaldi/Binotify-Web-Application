@@ -1,5 +1,9 @@
 ## Catatan
 Menggunakan MySQL
+Cara insert dummy:
+0. (Buat table jika belum)
+1. Jalankan insert_dummy.sql
+2. Copy dummy/media ke src/media
 
 ## Panduan Pengerjaan
 Berikut adalah hal yang harus diperhatikan untuk pengumpulan tugas ini:

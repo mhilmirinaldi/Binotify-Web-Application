@@ -23,6 +23,7 @@ CREATE TABLE Song(
     tanggal_terbit DATE NOT NULL,
     genre VARCHAR(64),
     duration INTEGER NOT NULL,
+    audio_path VARCHAR(256) NOT NULL,
     image_path VARCHAR(256),
     album_id INTEGER REFERENCES album(album_id)
 );
