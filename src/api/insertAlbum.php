@@ -7,55 +7,52 @@
 <body>
     <center>
     <?php 
-        try{
+        try{ 
             //connect dbms
             $MYSQLICONNECT = new mysqli("localhost","root","","binotify");
             
-            // Relative path save file
-            $relative_path = "/../../dummy/";
+            // get album_id
+            $stmt = "SELECT MAX(album_id) AS max_id from album";
+            $album_id = mysqli_query($MYSQLICONNECT, $stmt);
+            $row_album = mysqli_fetch_array($album_id);
 
             // grab data
+            $album_id = $row_album["max_id"] + 1;
             $judul = $_REQUEST['judul'];
-            $tanggal_terbit = $_REQUEST['tanggal_terbit'];
             $penyanyi = $_REQUEST['penyanyi'];
+            $tanggal_terbit = $_REQUEST['tanggal_terbit'];
             $genre = $_REQUEST['genre'];
-            $duration = $_REQUEST['duration'];
+            
+            // Relative path save file
+            $relative_path = "media/album/" . $album_id;
 
-            echo $duration;
+            $target_folder = getcwd() . "/../" . $relative_path;
+
+            if(!file_exists($target_folder)){
+                mkdir($target_folder);
+                echo "berhasil";
+            }
 
             // image
             $file_image_name = $_FILES["fileImage"]["name"];
             
             $ext = pathinfo($file_image_name, PATHINFO_EXTENSION);
-            $target_file_image = getcwd() . $relative_path . $judul . "." .$ext;
             
-
-            // audio
-            $file_audio_name = $_FILES["fileAudio"]["name"];
-           
-            $ext = pathinfo($file_audio_name, PATHINFO_EXTENSION);
-            $target_file_audio = getcwd() . $relative_path . $judul . "." .$ext;
+            $image_path = $relative_path . "/" . $album_id . "." . $ext;
             
+            $target_file_image = $target_folder . "/" . $album_id . "." .$ext;
             if (move_uploaded_file($_FILES["fileImage"]["tmp_name"], $target_file_image)) {
                 echo "The file ". htmlspecialchars( basename( $file_image_name)). " has been uploaded.";
             } else {
                 echo "Error";
             }
 
-            if (move_uploaded_file($_FILES["fileAudio"]["tmp_name"], $target_file_audio)) {
-                echo "The file ". htmlspecialchars( basename( $file_audio_name)). " has been uploaded.";
-            } else {
-                echo "Error";
-            }
-
+            
             // add to database
-            $stmt = "INSERT INTO song(judul, penyanyi, tanggal_terbit, genre, audio_path,image_path) VALUES ('$judul', '$penyanyi', '$tanggal_terbit', '$genre','$genre', '$genre')";
+            $stmt = "INSERT INTO album(judul, penyanyi, total_duration, genre, tanggal_terbit, image_path) VALUES ('$judul', '$penyanyi', 0,'$genre', '$tanggal_terbit', '$image_path')";
             if(mysqli_query($MYSQLICONNECT, $stmt)){
                 echo "berhasil";
             }
-
-            // update total duration
-            
         } catch (PDOException $e){
             echo $e;
         }

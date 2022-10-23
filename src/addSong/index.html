@@ -11,22 +11,22 @@
 <body>
     <h1>Add Album or Song</h1>
     <h2>Add Song</h2>
-    <form action="insertSong.php" method="post" enctype="multipart/form-data">
+    <form action="../api/insertSong.php" method="POST" enctype="multipart/form-data">
         <p>judul lagu</p>
         <input type="text" name ="judul">
         <p>penyanyi</p>
         <input type="text" name ="penyanyi">
         <p>tanggal terbit</p>
-        <input type="text" name ="tanggal_terbit">
+        <input type="date" name ="tanggal_terbit">
         <p>Genre</p>
         <input type="text" name ="genre">
+        <p>input name album</p>
+        <input type="text" id="" name="album">
         <p>Input file Audio</p>
         <input type="file"  accept="audio/*" name ="fileAudio" id="fileAudio">
         <input type="hidden" id="duration" name="duration">
         <p>Input file image</p>
         <input type="file" name ="fileImage" accept="image/*" >
-        <p>input name album</p>
-        <input type="text" id="" name="album" >
         <input type="submit" value="Upload">
     </form>
     
