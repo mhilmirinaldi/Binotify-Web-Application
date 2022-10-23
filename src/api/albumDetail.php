@@ -1,6 +1,4 @@
 <?php
-    header('Content-type: application/json');
-
     if(empty($_GET['id'])){
         http_response_code(400);
         echo "album id must be provided";
@@ -21,6 +19,7 @@
             exit;
         }
 
+        header('Content-type: application/json');
         echo json_encode($song);
 
     } catch(Exception $e){

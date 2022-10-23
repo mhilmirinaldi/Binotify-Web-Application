@@ -1,8 +1,6 @@
 <?php
     $config = include('../config.php');
 
-    header('Content-type: application/json');
-
     // Search must not be empty
     if(empty($_GET['search'])){
         http_response_code(400);
@@ -118,6 +116,7 @@
         }
 
         $songs = $stmt->fetchAll(PDO::FETCH_OBJ);
+        header('Content-type: application/json');
         echo json_encode($songs);
         
     } catch(Exception $e){
