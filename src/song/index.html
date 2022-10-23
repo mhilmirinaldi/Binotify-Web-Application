@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="id">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Binotify</title>
+    </head>
+    <body>
+        <h1 id="judul"></h1>
+        <p id="penyanyi">Penyanyi: {$song['penyanyi']}</p>
+        <p id="tanggal_terbit">Tanggal Terbit: {$song['tanggal_terbit']}</p>
+        <p id="genre">Genre: {$song['genre']}</p>
+        <p id="duration">Durasi: {$song['duration']} detik</p>
+        <audio id="audioplayer" controls>
+            Audio not supported
+        </audio>
+
+        <script type="text/javascript" src="../utility.js"></script>
+        <script type="text/javascript">
+            document.addEventListener("DOMContentLoaded", async function(){
+                const queryString = window.location.search;
+                const urlParams = new URLSearchParams(queryString);
+
+                const response = await requestGet(`/api/songDetail.php?id=${urlParams.get('id')}`);
+                const json = response.responseJSON; 
+                
+                document.title = json['judul'] + " • " + json['penyanyi'];
+                document.getElementById("judul").innerHTML = json['judul'];
+                document.getElementById("penyanyi").innerHTML = json['penyanyi'];
+                document.getElementById("tanggal_terbit").innerText = json['tanggal_terbit'];
+                document.getElementById("genre").innerText = json['genre'];
+                document.getElementById("duration").innerText = json['duration'];
+                document.getElementById("audioplayer").src = json['audio_path'];
+            });
+            //document.onload = 
+        </script>
+    </body>
+</html>
