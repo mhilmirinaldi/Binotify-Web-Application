@@ -21,7 +21,8 @@
         <p>Genre</p>
         <input type="text" name ="genre">
         <p>Input file Audio</p>
-        <input type="file"  accept="audio/*" name ="fileAudio">
+        <input type="file"  accept="audio/*" name ="fileAudio" id="fileAudio">
+        <input type="hidden" id="duration" name="duration">
         <p>Input file image</p>
         <input type="file" name ="fileImage" accept="image/*" >
         <p>input name album</p>
@@ -30,6 +31,8 @@
     </form>
     
 </body>
-
+    <script src="calculateDuration.js">
+        
+    </script>
 
 </html>
