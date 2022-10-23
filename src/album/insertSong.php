@@ -8,29 +8,41 @@
     <center>
     <?php 
         try{
+            //connect dbms
             $MYSQLICONNECT = new mysqli("localhost","root","","binotify");
             
+            // Relative path save file
+            $relative_path = "/../../dummy/";
+
+            // grab data
             $judul = $_REQUEST['judul'];
             $tanggal_terbit = $_REQUEST['tanggal_terbit'];
             $penyanyi = $_REQUEST['penyanyi'];
             $genre = $_REQUEST['genre'];
-            // ganti disini pathnya
-            $relative_path = "/../../dummy/";
-            $filename = $_FILES["fileImage"]["name"];
-            $audio_path = $_REQUEST['audio_path'];
-            // directori image
-            $target_dir = getcwd() . $relative_path;
-            $ext = pathinfo($filename, PATHINFO_EXTENSION);
-            $target_file = $target_dir . $judul . "." .$ext;
-            $uploadOk = 1;
-            $imageFileType = strtolower(pathinfo($target_file,PATHINFO_EXTENSION));
             
-            if (move_uploaded_file($_FILES["fileImage"]["tmp_name"], $target_file)) {
-                echo "The file ". htmlspecialchars( basename( $_FILES["fileImage"]["name"])). " has been uploaded.";
+            // image
+            $file_image_name = $_FILES["fileImage"]["name"];
+            
+            $ext = pathinfo($file_image_name, PATHINFO_EXTENSION);
+            $target_file_image = getcwd() . $relative_path . $judul . "." .$ext;
+            if (move_uploaded_file($_FILES["fileImage"]["tmp_name"], $target_file_image)) {
+                echo "The file ". htmlspecialchars( basename( $file_image_name)). " has been uploaded.";
             } else {
-                echo "Erroar";
+                echo "Error";
             }
-            $stmt = "INSERT INTO song(judul, penyanyi, tanggal_terbit, genre, audio_path,image_path) VALUES ('$judul', '$penyanyi', '$tanggal_terbit', '$genre', '$genre', '$relative_path . $judul')";
+
+            // audio
+            $file_audio_name = $_FILES["fileAudio"]["name"];
+            $ext = pathinfo($file_audio_name, PATHINFO_EXTENSION);
+            $target_file_audio = getcwd() . $relative_path . $judul . "." .$ext;
+            if (move_uploaded_file($_FILES["fileAudio"]["tmp_name"], $target_file_audio)) {
+                echo "The file ". htmlspecialchars( basename( $file_audio_name)). " has been uploaded.";
+            } else {
+                echo "Error";
+            }
+
+            // add to database
+            $stmt = "INSERT INTO song(judul, penyanyi, tanggal_terbit, genre, audio_path,image_path) VALUES ('$judul', '$penyanyi', '$tanggal_terbit', '$genre','$genre', '$genre')";
             if(mysqli_query($MYSQLICONNECT, $stmt)){
                 echo "berhasil";
             }
