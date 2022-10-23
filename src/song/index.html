@@ -4,17 +4,39 @@
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
+        <link href="./style.css" rel="stylesheet">
+
         <title>Binotify</title>
     </head>
     <body>
-        <h1 id="judul"></h1>
-        <p id="penyanyi">Penyanyi: {$song['penyanyi']}</p>
-        <p id="tanggal_terbit">Tanggal Terbit: {$song['tanggal_terbit']}</p>
-        <p id="genre">Genre: {$song['genre']}</p>
-        <p id="duration">Durasi: {$song['duration']} detik</p>
-        <audio id="audioplayer" controls>
-            Audio not supported
-        </audio>
+        <div class="main-container">
+            <div class="main-view">
+                <div class="song-top">
+                    <div class="song-image">
+                        <img>
+                    </div>
+                    <div class="song-title-detail">
+                        <div>SONG</div>
+                        <h1 class="judul judul-text"></h1>
+                        <div class="song-detail-container">
+                            <span class="penyanyi song-detail"></span>
+                            <span class="tanggal-terbit song-detail"></span>
+                            <span class="duration song-detail"></span>
+                            <span class="genre song-detail"></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="audioplayer-container">
+                <audio class="audioplayer" controls>
+                    Audio not supported
+                </audio>
+            </div>
+        </div>
 
         <script type="text/javascript" src="../utility.js"></script>
         <script type="text/javascript">
@@ -26,14 +48,15 @@
                 const json = response.responseJSON; 
                 
                 document.title = json['judul'] + " • " + json['penyanyi'];
-                document.getElementById("judul").innerHTML = json['judul'];
-                document.getElementById("penyanyi").innerHTML = json['penyanyi'];
-                document.getElementById("tanggal_terbit").innerText = json['tanggal_terbit'];
-                document.getElementById("genre").innerText = json['genre'];
-                document.getElementById("duration").innerText = json['duration'];
-                document.getElementById("audioplayer").src = json['audio_path'];
+                document.getElementsByClassName("judul")[0].innerHTML = json['judul'];
+                document.getElementsByClassName("penyanyi")[0].innerHTML = json['penyanyi'];
+                document.getElementsByClassName("tanggal-terbit")[0].innerText = json['tanggal_terbit'];
+                document.getElementsByClassName("genre")[0].innerText = json['genre'];
+                document.getElementsByClassName("duration")[0].innerText = json['duration'] + ' seconds';
+                document.getElementsByClassName("song-image")[0].children[0].src = json['image_path'];
+                document.getElementsByClassName("song-image")[0].children[0].alt = json['judul'];
+                document.getElementsByClassName("audioplayer")[0].src = json['audio_path'];
             });
-            //document.onload = 
         </script>
     </body>
 </html>
