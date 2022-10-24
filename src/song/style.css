@@ -1,0 +1,79 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    background-color: #121212;
+}
+
+.audioplayer-container {
+    z-index: 4;
+    overflow: hidden;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    background-color: #181818;
+    padding: 10px 10px;
+}
+
+.judul-text {
+    font-size: 3.5rem;
+    font-weight: 700;
+    font-family: 'Montserrat', sans-serif;
+    margin: 0.4rem 0;
+    color: #fff;
+}
+
+.main-view {
+    background-color: #121212;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    padding-bottom: 75px;
+}
+
+.song-top {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-end;
+    padding: 0 2rem 1.5rem 2rem;
+    min-height: 350px;
+    max-height: 500px;
+}
+
+.song-title-detail {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+}
+
+.song-detail-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+.song-detail {
+    padding: 0.5rem 0rem;
+}
+
+.song-detail:not(:first-child)::before {
+    content: "•";
+    margin: 0 0.5rem;
+}
+
+.song-image {
+    margin-right: 1.5rem;
+}
+
+.song-image img {
+    width: 192px;
+    height: 192px;
+}
+
+@media screen and (min-width: 768px) {
+    .song-image img {
+        width: 232px;
+        height: 232px;
+    }
+}
