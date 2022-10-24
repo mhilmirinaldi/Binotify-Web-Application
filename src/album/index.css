@@ -1,0 +1,45 @@
+*{
+    color: white;
+    /* font-family: ""; */
+    box-sizing: border-box;
+}
+
+body{
+    background-color: black;
+}
+.flex-container-album {
+    display:flex;
+    flex-direction: row;
+    font-size: 20px;
+    text-align: left;
+}
+
+.flex-album{
+    background-color: #141414;
+    padding: 20px;
+    margin:10px;
+    /* flex: 50%; */
+}
+
+.judul{
+    font-weight: bold;
+    margin-bottom: 0px;
+}
+span{
+    display: flex; 
+    /* justify-content: space-between; */
+    padding-right: 10px;
+    font-size:15px
+}
+
+.pagination{
+    display: inline-block;
+}
+
+.pagination a{
+    float:left;
+    background-color: #141414;
+    padding: 8px 16px;
+    margin: 5px;
+    text-decoration:none;
+}
