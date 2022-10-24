@@ -18,7 +18,7 @@ body{
     background-color: #141414;
     padding: 20px;
     margin:10px;
-    /* flex: 50%; */
+    /* flex: 100%; */
 }
 
 .judul{
@@ -31,7 +31,9 @@ span{
     padding-right: 10px;
     font-size:15px
 }
-
+span p{
+    color: #9a9a9a;
+}
 .pagination{
     display: inline-block;
 }
@@ -42,4 +44,10 @@ span{
     padding: 8px 16px;
     margin: 5px;
     text-decoration:none;
+}
+
+@media (max-width: 800px) {
+  .flex-container-album {
+    flex-direction: column;
+  }
 }

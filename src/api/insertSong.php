@@ -12,15 +12,12 @@
         
         // grab data
         $song_id = $row_song["max_id"] + 1;
-        echo "$song_id";
 
         $judul = $_REQUEST['judul'];
         $tanggal_terbit = $_REQUEST['tanggal_terbit'];
         $penyanyi = $_REQUEST['penyanyi'];
         $genre = $_REQUEST['genre'];
         $duration = $_REQUEST['duration'];
-
-        echo $duration;
 
         // Relative path save file
         $relative_path = "media/song/" . $song_id;
