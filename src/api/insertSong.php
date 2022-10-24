@@ -1,23 +1,30 @@
 <?php 
     try{
-        //connect dbms
-        $MYSQLICONNECT = new mysqli("localhost","root","","binotify");
-    
-
-        // get song_id
-        $stmt = "SELECT MAX(song_id) AS max_id from song";
-        $song_id = mysqli_query($MYSQLICONNECT, $stmt);
-        $row_song = mysqli_fetch_array($song_id);
-        
-        
         // grab data
-        $song_id = $row_song["max_id"] + 1;
-
         $judul = $_REQUEST['judul'];
         $tanggal_terbit = $_REQUEST['tanggal_terbit'];
         $penyanyi = $_REQUEST['penyanyi'];
         $genre = $_REQUEST['genre'];
         $duration = $_REQUEST['duration'];
+        $album = $_REQUEST['album'];
+
+        //connect dbms
+        $MYSQLICONNECT = new mysqli("localhost","root","","binotify");
+    
+
+
+        // get song_id
+        $stmt = "SELECT MAX(song_id) AS max_id from song";
+        $query = mysqli_query($MYSQLICONNECT, $stmt);
+        $row_song = mysqli_fetch_array($query);
+        
+        $song_id = $row_song["max_id"] + 1;
+
+        $stmt = "SELECT album_id from album WHERE judul = '$album'";
+        $query = mysqli_query($MYSQLICONNECT, $stmt);
+        $row_song = mysqli_fetch_array($query);
+
+        $album_id = $row_song["album_id"];
 
         // Relative path save file
         $relative_path = "media/song/" . $song_id;
@@ -62,7 +69,7 @@
         }
 
         // // add to database
-        $stmt = "INSERT INTO song(judul, penyanyi, tanggal_terbit, genre, duration, audio_path,image_path) VALUES ('$judul', '$penyanyi', '$tanggal_terbit', '$genre', '$duration' ,'$audio_path', '$image_path')";
+        $stmt = "INSERT INTO song(judul, penyanyi, tanggal_terbit, genre, duration, audio_path,image_path,album_id) VALUES ('$judul', '$penyanyi', '$tanggal_terbit', '$genre', '$duration' ,'$audio_path', '$image_path', '$album_id')";
         if(mysqli_query($MYSQLICONNECT, $stmt)){
             echo "berhasil";
         }

@@ -21,17 +21,27 @@ body{
     /* flex: 100%; */
 }
 
-.judul{
+.image-album{
+    width:200px;
+    height:200px;
+}
+div.judul{
     font-weight: bold;
-    margin-bottom: 0px;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    white-space: nowrap; 
+    width: 200px;
+    overflow: hidden;
+    text-overflow: "----"; 
 }
 span{
     display: flex; 
+    margin-top: 0px;
     /* justify-content: space-between; */
-    padding-right: 10px;
     font-size:15px
 }
 span p{
+    margin-top: 0px;
     color: #9a9a9a;
 }
 .pagination{
