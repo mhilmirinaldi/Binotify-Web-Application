@@ -12,7 +12,9 @@
     // searchby, optional, default search all aspects
     if(!empty($_GET['searchby'])){
         $searchby = $_GET['searchby'];
-        if($searchby !== 'judul' && $searchby !== 'penyanyi' && $searchby !== 'tahun'){
+        if($searchby == 'all'){
+            unset($searchby);
+        } else if($searchby !== 'judul' && $searchby !== 'penyanyi' && $searchby !== 'tahun'){
             http_response_code(400);
             echo "searchby must be judul, penyanyi, tahun, or leave empty";
             exit;
@@ -37,7 +39,7 @@
     if(!empty($_GET['sortby'])){
         $sortby = $_GET['sortby'];
 
-        if($sortby !== 'judul' && $sortby !== 'penyanyi' && $sortby != 'tahun'){
+        if($sortby !== 'judul' && $sortby != 'tahun'){
             http_response_code(400);
             echo "invalid sort by";
             exit;

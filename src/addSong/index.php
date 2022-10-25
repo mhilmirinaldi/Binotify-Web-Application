@@ -10,6 +10,8 @@
 </head>
 
 <body>
+    <?php include ("../navbar/navbargenerate.php");
+    echo_card()?>
     <h1>Add Album or Song</h1>
     <div class="container">
         <h2>Add Song</h2>
