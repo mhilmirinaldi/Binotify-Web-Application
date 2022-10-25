@@ -33,13 +33,15 @@
     <link rel = "stylesheet" href="index.css">
     <title>Document</title>
 </head>
+    <?php include ("../navbar/navbargenerate.php");
+    echo_card()?>
     <h1>Daftar Album</h1>
     <div class = "flex-container-album">
     <?php
     while($row = mysqli_fetch_assoc($page_album)){
     ?>
         <div class = "flex-album">
-            <image class="image-album" src="<?php echo "../" . $row['image_path'];?>">
+            <image class="image-album" src="<?php echo "/" . $row['image_path'];?>">
             <div class ="judul"> <?php echo $row['judul']; ?></div>
             <span>
                 <p> <?php echo $row['tahun']; ?></p>
