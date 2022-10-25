@@ -12,12 +12,13 @@ if(isset($_POST["login"])){
         // Cek password
         $row = mysqli_fetch_assoc($result);
         if(password_verify($password, $row["password"])){
-            echo "<script>
-                    alert('Login berhasil!');
-                </script>";
-
+            // Set cookie
+            setcookie('user_id', $row['user_id'], time()+3000, '/');
+            setcookie('key', hash('sha256', $row['username']), time()+3000, '/');
+            
             // Link ke halaman home
-            // header("Location: home.php");
+            header("Location: ../home/home.php");
+            
             exit;
         } else {
             echo "<script>
@@ -29,8 +30,6 @@ if(isset($_POST["login"])){
                 alert('Username atau password salah!');
             </script>";
     }
-
-    $error = true;
 }
 
 ?>
