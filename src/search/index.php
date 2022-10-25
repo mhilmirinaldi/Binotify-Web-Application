@@ -22,123 +22,93 @@
                     value=<?php if(isset($_GET['search'])) echo "{$_GET['search']}"; else echo ""; ?> >
                 <button type="submit">Search</button>
                 <div class="search-by">
-                    <a <?php if(empty($_GET['searchby'])) echo 'class="active"'; ?> onclick="applyall()">All</a>
-                    <a <?php if(isset($_GET['searchby']) && $_GET['searchby'] === 'judul') echo 'class="active"'; ?> onclick="applyjudul()" >Title</a>
-                    <a <?php if(isset($_GET['searchby']) && $_GET['searchby'] === 'penyanyi') echo 'class="active"'; ?> onclick="applypenyanyi()" >Penyanyi</a>
-                    <a <?php if(isset($_GET['searchby']) && $_GET['searchby'] === 'tahun') echo 'class="active"'; ?> onclick="applyyear()">Year</a>
-                    <input id="is-genre-filter" type="checkbox" onclick="togglegenre()">Genre: </input>
-                    <input id="genre-filter" type="text" placeholder="genre filter" disabled=true>
+                    <input type="radio" name="searchby" value="all"
+                        <?php if(!isset($_GET['searchby']) || $_GET['searchby'] == 'all') echo 'checked'; ?>
+                    >All</input>
+                    <input type="radio" name="searchby" value="judul"
+                        <?php if(isset($_GET['searchby']) && $_GET['searchby'] == 'judul') echo 'checked'; ?>
+                    >Title</input>
+                    <input type="radio" name="searchby" value="penyanyi"
+                        <?php if(isset($_GET['searchby']) && $_GET['searchby'] == 'penyanyi') echo 'checked'; ?>
+                    >Penyanyi</input>
+                    <input type="radio" name="searchby" value="tahun"
+                        <?php if(isset($_GET['searchby']) && $_GET['searchby'] == 'tahun') echo 'checked'; ?>
+                    >Tahun</input>
+
+                    <input id="is-genre-filter" type="checkbox" onclick="togglegenre()"
+                        <?php if(isset($_GET['genre'])) echo 'checked' ?>
+                    >Genre: </input>
+                    <input id="genre-filter" type="text" name="genre" placeholder="genre filter"
+                        <?php if(isset($_GET['genre'])) echo "value={$_GET['genre']}"; else echo "disabled" ?>
+                    >
                 </div>
                 <div class="search-sortby-container">
                     <label>Sort by: </label>
                     <select name="sortby">
-                        <option value="judul">Title</option>
-                        <option value="tahun">Year</option>
+                        <option value="judul"
+                            <?php if(!isset($_GET['sortby']) || $_GET['sortby'] == 'judul') echo 'selected'; ?>
+                        >Title</option>
+                        <option value="tahun"
+                            <?php if(isset($_GET['sortby']) && $_GET['sortby'] == 'tahun') echo 'selected'; ?>
+                        >Year</option>
                     </select>
-                    <input type="checkbox">Descending</input>
+                    <input name="desc" value=true type="checkbox"
+                        <?php if(isset($_GET['desc']) && $_GET['desc'] == true) echo 'checked'; ?>
+                    >Descending</input>
                 </div>
-
             </form>
         </div>
 
         <div>
-            <div class="search-filter">
-            </div>
             <div class="search-song-title-result">
                 <div class="search-song-title">
                     <h2>Songs</h2>
                 </div>
+
                 <div class="search-song-result">
-                    <template id="songentrytemplate">
-                        <div class="song-listentry">
-                            <img class="song-listentry-thumbnail">
-                            <div class="song-listentry-titlepenyanyi">
-                                <div class="song-listentry-title">Gajah</div>
-                                <span class="song-listentry-penyanyi">Tulus</span>
-                            </div>
-                            <div class="song-listentry-durationtahunterbit">
-                                <div class="song-listentry-duration">3:59</div>
-                                <span class="song-listentry-tahunterbit">2019</span>
-                            </div>
-                        </div>
-                    </template>
+                    <?php
+                        include('./search-functions.php');
+                        include('./songentry-template.php');
+                        if(isset($_GET['search'])){
+                            try {
+                                $songs = search();
+                                foreach($songs as $song){
+                                    generateSongentry($song);
+                                }
+                            } catch(Exception $e){
+                                echo $e;
+                            }
+                        } else {
+                            echo "<i>Empty search key</i>";
+                        }
+                    ?>
                 </div>
+                
             </div>
+        </div>
+
+        <div class="search-pagination">
+            <?php
+                include('./pagination-template.php');
+                if(isset($_GET['search'])){
+                    try{
+                        $count = searchCount();
+                        if(!isset($_GET['page'])){
+                            $currentPage = 1;
+                        } else{
+                            $currentPage = intval($_GET['page']);
+                        }
+                        generatePagination($currentPage, $count->totalpages, parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), $_SERVER["QUERY_STRING"]);
+                    } catch(Exception $e){
+                        echo $e;
+                    }
+                }
+            ?>
         </div>
     </div>
 
     <script type="text/javascript" src="../utility.js"></script>
     <script>
-        document.addEventListener("DOMContentLoaded", async () => {
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-
-            if(!urlParams.get('search')){
-                return;
-            }
-
-            const response = await requestGet(`/api/search.php?${urlParams.toString()}`);
-            const json = response.responseJSON;
-
-            const songResultNode = document.getElementsByClassName("search-song-result")[0];
-            const template = document.getElementById("songentrytemplate")
-
-            for(let i = 0; i < json.length; i++){
-                const song = json[i];
-
-                const songNode = template.content.cloneNode(true);
-                songNode.querySelector('.song-listentry').onclick = function(){
-                    openpage(song['song_id']);
-                }
-                songNode.querySelector('.song-listentry-thumbnail').src = song['image_path'];
-                songNode.querySelector('.song-listentry-title').innerHTML = song['judul'];
-                songNode.querySelector('.song-listentry-penyanyi').innerHTML = song['penyanyi'];
-                let durationDate = new Date(0);
-                durationDate.setSeconds(song['duration']);
-                songNode.querySelector('.song-listentry-duration').innerHTML = durationDate.toISOString().substring(14, 19);
-                songNode.querySelector('.song-listentry-tahunterbit').innerHTML = song['tahun_terbit'];
-                songResultNode.appendChild(songNode);
-            }
-        });
-
-        function openpage(song_id){
-            window.location = `/song?id=${song_id}`;
-        }
-
-        function applyall(){
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            urlParams.delete('searchby');
-            window.location = `/search?${urlParams.toString()}`;
-        }
-
-        function applyjudul(){
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            urlParams.delete('searchby');
-            urlParams.append('searchby', 'judul');
-            window.location = `/search?${urlParams.toString()}`;
-        }
-
-        function applypenyanyi(){
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            urlParams.delete('searchby');
-            urlParams.append('searchby', 'penyanyi');
-            window.location = `/search?${urlParams.toString()}`;
-        }
-
-        function applyyear(){
-            const queryString = window.location.search;
-            const urlParams = new URLSearchParams(queryString);
-            urlParams.delete('searchby');
-            urlParams.append('searchby', 'tahun');
-            window.location = `/search?${urlParams.toString()}`;
-        }        
-
-        function applyfilter(){
-        }
-
         function togglegenre(){
             const isGenreFilter = document.getElementById('is-genre-filter');
             const genreFilter = document.getElementById('genre-filter');
