@@ -77,12 +77,8 @@ function register($data){
 
 if (isset($_POST["register"])){
     if(register($_POST) > 0){
-        echo "<script>
-                alert('User baru berhasil ditambahkan!');
-            </script>";
-
-        # link ke halaman login
-
+        # Link ke halaman login
+        header("Location: ../login/login.php");
     }
 }
 ?>
