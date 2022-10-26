@@ -8,6 +8,7 @@
     <link rel = "stylesheet" href="addSong.css">
     <link rel = "stylesheet" href="../style.css">
     <title>Document</title>
+    <link rel="icon" href="/static/logo-only.svg" type="image/svg+xml">
 </head>
 
 <body>

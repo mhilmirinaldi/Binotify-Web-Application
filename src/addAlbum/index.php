@@ -8,6 +8,7 @@
     <link href="addAlbum.css" rel="stylesheet">
     <link href="../style.css" rel="stylesheet">
     <title>Document</title>
+    <link rel="icon" href="/static/logo-only.svg" type="image/svg+xml">
 </head>
 
 <body>

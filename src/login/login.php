@@ -38,6 +38,7 @@ if(isset($_POST["login"])){
 <html >
 <head>
     <title>Login</title>
+    <link rel="icon" href="/static/logo-only.svg" type="image/svg+xml">
 </head>
 <body>
 
