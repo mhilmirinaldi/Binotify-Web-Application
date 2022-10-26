@@ -67,7 +67,7 @@
             }
         
             $song_id = $_REQUEST['song'];
-            if (song_id !=""){
+            if ($song_id !=""){
                 $stmt = "UPDATE song SET album_id = '$album_id' WHERE song_id = '$song_id'";
                 if(mysqli_query($MYSQLICONNECT, $stmt) and $status_upload = 1){
                     //nothing
