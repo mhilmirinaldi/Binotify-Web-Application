@@ -88,6 +88,7 @@ if (isset($_POST["register"])){
 <html>
 <head>
     <title>Register</title>
+    <link rel="icon" href="/static/logo-only.svg" type="image/svg+xml">
 </head>
 <body>
 

@@ -1,1 +1,1 @@
-<img src="logo.svg"></div>
+<img src="/static/logo-with-text.svg"></div>

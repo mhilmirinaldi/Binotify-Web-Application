@@ -1,6 +1,6 @@
 <link rel = "stylesheet" href="../navbar/navbar.css">
 <?php
-function echo_card($title = "Default Title", $desc = "Default Description", $img = "../navbar/logo.svg") {
+function echo_card($title = "Default Title", $desc = "Default Description", $img = "/static/logo-with-text.svg") {
    $html = <<<"EOT"
     <div class="navbar"> 
         <img class="logo" src="$img" >
