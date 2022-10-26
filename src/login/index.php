@@ -32,12 +32,13 @@ if(isset($_POST["login"])){
 <html >
 <head>
     <title>Login</title>
+    <link rel="icon" href="../static/logo-only.svg" type="image/svg+xml">
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <div class='header'>
-        <img src="../navbar/logo.svg" class=img>
+        <img src="../static/logo-with-text.svg" class=img>
     </div>
     <div class='center'>
         <?php if(isset($error)) : ?>
