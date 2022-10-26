@@ -3,7 +3,7 @@
 function echo_card($title = "Default Title", $desc = "Default Description", $img = "../navbar/logo.svg") {
    $html = <<<"EOT"
     <div class="navbar"> 
-        <img src="$img" >
+        <img class="logo" src="$img" >
         <a href="/home" onclick="route()">Home</a>
         <a href="/search"  onclick="route()"> Search</a>
         <a href="/album-list"  onclick="route()">Daftar Album</a>
