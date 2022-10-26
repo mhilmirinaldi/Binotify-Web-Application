@@ -13,7 +13,11 @@
     <title>Search Result</title>
 </head>
 <body>
-    <div class="main-container">
+    <?php
+        include('../navbar/navbargenerate.php');
+        echo_card();
+    ?>
+    <div class="main">
         <div>
             <form action="/search" method="GET">
                 <input type="text"

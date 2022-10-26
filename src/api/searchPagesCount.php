@@ -69,10 +69,14 @@
                 $stmt = $db->prepare("SELECT COUNT(song_id) AS count FROM song
                                       WHERE (judul LIKE ? OR penyanyi LIKE ? OR YEAR(tanggal_terbit) = ?) AND genre = ?");
                 $stmt->execute(array("%$search%", "%$search%", intval($search), $genre));
-            } else{
-                $stmt = $db->prepare("SELECT COUNT(song_id) AS count FROM song
+            } else{$searchby = $_GET['searchby'];
+                if($searchby == 'all'){
+                    unset($searchby);
+                } else if($searchby !== 'judul' && $searchby !== 'penyanyi' && $searchby !== 'tahun'){
+                    $stmt = $db->prepare("SELECT COUNT(song_id) AS count FROM song
                                       WHERE (judul LIKE ? OR penyanyi LIKE ? OR YEAR(tanggal_terbit) = ?)");
-                $stmt->execute(array("%$search%", "%$search%", intval($search)));
+                    $stmt->execute(array("%$search%", "%$search%", intval($search)));
+                }
             }
         } else if($searchby === 'judul'){
             if(isset($genre)){
