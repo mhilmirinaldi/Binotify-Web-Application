@@ -9,7 +9,7 @@ function echo_card($title = "Default Title", $desc = "Default Description", $img
         <a href="/album"  onclick="route()">Daftar Album</a>
         <a href="/song"  onclick="route()">Daftar Lagu</a>
         <a href="/addAlbum"  onclick="route()">Add Album</a>
-        <a href="/addSong"  onclick="route()">Add Album / Song</a>
+        <a href="/addSong"  onclick="route()">Add Song</a>
     </div>
 EOT;
 

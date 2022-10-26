@@ -30,38 +30,40 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href="index.css">
+    <link rel = "stylesheet" href="style.css">
+    <link rel = "stylesheet" href="../style.css">
     <title>Document</title>
 </head>
     <?php include ("../navbar/navbargenerate.php");
     echo_card()?>
-    <h1>Daftar Album</h1>
-    <div class = "flex-container-album">
-    <?php
-    while($row = mysqli_fetch_assoc($page_album)){
-    ?>
-        <div class = "flex-album">
-            <image class="image-album" src="<?php echo "/" . $row['image_path'];?>">
-            <div class ="judul"> <?php echo $row['judul']; ?></div>
-            <span>
-                <p> <?php echo $row['tahun']; ?></p>
-                <p>&nbsp;•&nbsp;</p>
-                <p><?php echo $row['penyanyi']; ?></p>
-            </span>
-            
+    <div class="main">
+        <h1>Daftar Album</h1>
+        <div class = "flex-container-album">
+        <?php
+        while($row = mysqli_fetch_assoc($page_album)){
+        ?>
+            <div class = "flex-album">
+                <image class="image-album" src="<?php echo "/" . $row['image_path'];?>">
+                <div class ="judul"> <?php echo $row['judul']; ?></div>
+                <span>
+                    <p> <?php echo $row['tahun']; ?></p>
+                    <p>&nbsp;•&nbsp;</p>
+                    <p><?php echo $row['penyanyi']; ?></p>
+                </span>
+                
+            </div>
+        <?php
+        }
+        ?>
+        </div >
+        <div class="pagination">
+            <?php for ($i=1;$i<=$jumlah_paggination;$i++): ?>
+            <a href="?halaman=<?php echo $i;?>">
+                <?php echo $i; ?>
+            </a>
+            <?php endfor;?>
         </div>
-    <?php
-    }
-    ?>
-    </div >
-    <div class="pagination">
-        <?php for ($i=1;$i<=$jumlah_paggination;$i++): ?>
-        <a href="?halaman=<?php echo $i;?>">
-            <?php echo $i; ?>
-        </a>
-        <?php endfor;?>
     </div>
-    
 <body>
 
 </body>

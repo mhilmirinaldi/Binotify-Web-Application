@@ -6,20 +6,11 @@
         $penyanyi = $_REQUEST['penyanyi'];
         $genre = $_REQUEST['genre'];
         $duration = $_REQUEST['duration'];
-        $album = $_REQUEST['album'];
+        $album_id = $_REQUEST['album'];
 
         //connect dbms
-        $MYSQLICONNECT = new mysqli("localhost","root","","binotify");
-    
-
-        $stmt = "SELECT album_id from album WHERE judul = '$album'";
-        $query = mysqli_query($MYSQLICONNECT, $stmt);
-        $row_song = mysqli_fetch_array($query);
-
-        $album_id = $row_song["album_id"];
-        
-        
-        
+        $MYSQLICONNECT = new mysqli("localhost","root","","binotify");   
+           
 
         // // add to database
         $stmt = "INSERT INTO song(judul, penyanyi, tanggal_terbit, genre, duration, audio_path,image_path,album_id) VALUES ('$judul', '$penyanyi', '$tanggal_terbit', '$genre', '$duration' ,'', '', '$album_id')";
