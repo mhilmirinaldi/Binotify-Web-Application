@@ -13,51 +13,46 @@
         <title>Binotify</title>
     </head>
     <body>
-        <div class="main-container">
+        <div>
+            <?php
+                include("../navbar/navbargenerate.php");
+                echo_card();
+            ?>
+        </div>
+        <div class="main">
             <div class="main-view">
+                <?php
+                    include('./song-detail.php');
+                    try{
+                        $song = songDetail();
+                    } catch(Exception $e){
+                        echo $e;
+                    }
+                ?>
                 <div class="song-top">
                     <div class="song-image">
-                        <img>
+                        <img src="<?php if(isset($song)) echo $song['image_path'] ?>">
                     </div>
                     <div class="song-title-detail">
                         <div>SONG</div>
-                        <h1 class="judul judul-text"></h1>
+                        <h1 class="judul judul-text"><?php if(isset($song)) echo $song['judul'] ?></h1>
                         <div class="song-detail-container">
-                            <span class="penyanyi song-detail"></span>
-                            <span class="tanggal-terbit song-detail"></span>
-                            <span class="duration song-detail"></span>
-                            <span class="genre song-detail"></span>
+                            <span class="penyanyi song-detail"><?php if(isset($song)) echo $song['penyanyi'] ?></span>
+                            <span class="tanggal-terbit song-detail"><?php if(isset($song)) echo $song['tanggal_terbit'] ?></span>
+                            <span class="duration song-detail"><?php if(isset($song)) echo gmdate("i:s", $song['duration']) ?></span>
+                            <span class="genre song-detail"><?php if(isset($song)) echo $song['genre'] ?></span>
                         </div>
                     </div>
                 </div>
             </div>
 
             <div class="audioplayer-container">
-                <audio class="audioplayer" controls>
+                <audio class="audioplayer" src="<?php if(isset($song)) echo $song['audio_path'] ?>" controls>
                     Audio not supported
                 </audio>
             </div>
         </div>
-
+        
         <script type="text/javascript" src="../utility.js"></script>
-        <script type="text/javascript">
-            document.addEventListener("DOMContentLoaded", async function(){
-                const queryString = window.location.search;
-                const urlParams = new URLSearchParams(queryString);
-
-                const response = await requestGet(`/api/songDetail.php?id=${urlParams.get('id')}`);
-                const json = response.responseJSON; 
-                
-                document.title = json['judul'] + " • " + json['penyanyi'];
-                document.getElementsByClassName("judul")[0].innerHTML = json['judul'];
-                document.getElementsByClassName("penyanyi")[0].innerHTML = json['penyanyi'];
-                document.getElementsByClassName("tanggal-terbit")[0].innerText = json['tanggal_terbit'];
-                document.getElementsByClassName("genre")[0].innerText = json['genre'];
-                document.getElementsByClassName("duration")[0].innerText = json['duration'] + ' seconds';
-                document.getElementsByClassName("song-image")[0].children[0].src = json['image_path'];
-                document.getElementsByClassName("song-image")[0].children[0].alt = json['judul'];
-                document.getElementsByClassName("audioplayer")[0].src = json['audio_path'];
-            });
-        </script>
     </body>
 </html>
