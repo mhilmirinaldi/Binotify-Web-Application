@@ -1,5 +1,6 @@
+<link rel = "stylesheet" href="addSong.css">
 <select id="album" name="album">
-    <option value=""></option>
+    <option >select album</option>
     <?php
         if(isset($_GET['penyanyi'])){
             $penyanyi = $_GET['penyanyi'];
@@ -13,6 +14,6 @@
         $page_album = mysqli_query($MYSQLICONNECT,$stmt);
         while ($row = mysqli_fetch_assoc($page_album)){
     ?>
-    <option value="<?php echo $row['album_id']; ?>"><?php echo $row["judul"]; ?></option>
+    <option style="color:black" value="<?php echo $row['album_id']; ?>"><?php echo $row["judul"]; ?></option>
     <?php } ?>
 </select>

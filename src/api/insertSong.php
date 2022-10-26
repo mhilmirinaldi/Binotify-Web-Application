@@ -46,6 +46,35 @@
         
         $song_id = $row_song["max_id"];
 
+        $image_path ="";
+        if(!isset($_FILES["fileImage"])){
+            // give image dummy
+            $image_path = "/media/album/0/0.png";
+        }
+        else{
+
+            // image
+            $file_image_name = $_FILES["fileImage"]["name"];
+            $filesize = filesize($file_image_name);
+
+            if ($filesize == 0 or $filesize > 3145728) {
+                $image_path = "/media/album/0/0.png";
+            }
+            else {
+
+                $ext = pathinfo($file_image_name, PATHINFO_EXTENSION);
+                
+                $image_path = "/" . $relative_path . $song_id . "." . $ext;
+                
+                $target_file_image = $target_folder . $song_id . "." .$ext;
+                
+                if (move_uploaded_file($_FILES["fileImage"]["tmp_name"], $target_file_image) and  $upload_status==1) {
+                
+                } else {
+                    $upload_status=0;
+                }
+            }
+        }
                 // Relative path save file
         $relative_path = "/media/song/" . $song_id . "/";
 
@@ -56,15 +85,7 @@
         }
 
 
-        // image
-        $file_image_name = $_FILES["fileImage"]["name"];
         
-        $ext = pathinfo($file_image_name, PATHINFO_EXTENSION);
-        
-        $image_path = "/" . $relative_path . $song_id . "." . $ext;
-        
-        $target_file_image = $target_folder . $song_id . "." .$ext;
-    
 
         // audio
         $file_audio_name = $_FILES["fileAudio"]["name"];
@@ -82,11 +103,6 @@
             $upload_status =0;
         }
 
-        if (move_uploaded_file($_FILES["fileImage"]["tmp_name"], $target_file_image) and  $upload_status==1) {
-           
-        } else {
-            $upload_status=0;
-        }
 
         if (move_uploaded_file($_FILES["fileAudio"]["tmp_name"], $target_file_audio) and  $upload_status==1) {
             

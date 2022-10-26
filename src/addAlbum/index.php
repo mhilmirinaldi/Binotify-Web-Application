@@ -23,7 +23,7 @@
                 <label for="fileImage">
                     <img src="../media/album/0/input.png" id="image-input">
                 </label>
-                <input type="file" name="fileImage" id="fileImage" accept="image/*" onchange="displayImage(event)" required>
+                <input type="file" name="fileImage" id="fileImage" accept="image/*" onchange="displayImage(event)">
             </div>
             
             <div class="row">

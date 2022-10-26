@@ -1,5 +1,5 @@
 <select id="song" name="song">
-    <option value="">none</option>
+    <option value="">Select Song</option>
     <?php
         if(isset($_GET['penyanyi'])){
             $penyanyi = $_GET['penyanyi'];
@@ -13,6 +13,6 @@
         $page_song = mysqli_query($MYSQLICONNECT,$stmt);
         while ($row = mysqli_fetch_assoc($page_song)){
     ?>
-    <option value="<?php echo $row['song_id']; ?>"><?php echo $row["judul"]; ?></option>
+    <option style="color:black" value="<?php echo $row['song_id']; ?>"><?php echo $row["judul"]; ?></option>
     <?php } ?>
 </select>

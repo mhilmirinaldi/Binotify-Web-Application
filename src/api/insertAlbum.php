@@ -33,28 +33,47 @@
             $tanggal_terbit = $_REQUEST['tanggal_terbit'];
             $genre = $_REQUEST['genre'];
             
-            // Relative path save file
-            $relative_path = "media/album/" . $album_id;
-
-            $target_folder = getcwd() . "/../" . $relative_path;
-
-            if(!file_exists($target_folder)){
-                mkdir($target_folder);
+            $image_path ="";
+            //cek image exist or not
+            if(!isset($_FILES["fileImage"])){
+                // give image dummy
+                $image_path = "/media/album/0/0.png";
             }
+            else{
+                // Relative path save file
+                $file_image_name = $_FILES["fileImage"]["name"];
+                $filesize = filesize($file_image_name);
 
-            // image
-            $file_image_name = $_FILES["fileImage"]["name"];
-            
-            $ext = pathinfo($file_image_name, PATHINFO_EXTENSION);
-            
-            $image_path = "/" . $relative_path . "/" . $album_id . "." . $ext;
-            
-            $target_file_image = $target_folder . "/" . $album_id . "." .$ext;
-            if (move_uploaded_file($_FILES["fileImage"]["tmp_name"], $target_file_image)  ) {
+                if ($filesize == 0 or $filesize > 3145728) {
+                    $image_path = "/media/album/0/0.png";
+                }
+                else {
+                    $relative_path = "media/album/" . $album_id;
+
+                    $target_folder = getcwd() . "/../" . $relative_path;
+
+                    if(!file_exists($target_folder)){
+                        mkdir($target_folder);
+                    }
+
+                    // image
                 
-            } else {
-                $status_upload =0;
+                    
+                    
+                    $ext = pathinfo($file_image_name, PATHINFO_EXTENSION);
+                    
+                    $image_path = "/" . $relative_path . "/" . $album_id . "." . $ext;
+                    
+                    $target_file_image = $target_folder . "/" . $album_id . "." .$ext;
+                    if (move_uploaded_file($_FILES["fileImage"]["tmp_name"], $target_file_image)  ) {
+                        
+                    } else {
+                        $status_upload =0;
+                    }
+                }
+                
             }
+            
 
             
             // add to database

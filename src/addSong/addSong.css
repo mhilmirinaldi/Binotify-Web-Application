@@ -109,3 +109,7 @@ input::file-selector-button {
     display:flex;
     align-items:center;
 }
+
+.album{
+    color: black; 
+}
