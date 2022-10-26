@@ -74,7 +74,7 @@
                         <?php
                             include('./search-functions.php');
                             include('./songentry-template.php');
-                            if(isset($_GET['search'])){
+                            if(isset($_GET['search']) && $_GET['search'] != ''){
                                 try {
                                     $songs = search();
                                     foreach($songs as $song){
@@ -95,7 +95,7 @@
             <div class="search-pagination">
                 <?php
                     include('./pagination-template.php');
-                    if(isset($_GET['search'])){
+                    if(isset($_GET['search']) && $_GET['search'] != ''){
                         try{
                             $count = searchCount();
                             if(!isset($_GET['page'])){
@@ -105,7 +105,7 @@
                             }
                             generatePagination($currentPage, $count->totalpages, parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), $_SERVER["QUERY_STRING"]);
                         } catch(Exception $e){
-                            echo $e;
+                            echo "<i>", $e->getMessage(), "</i>";
                         }
                     }
                 ?>

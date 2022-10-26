@@ -23,10 +23,14 @@
             <div class="main-view">
                 <?php
                     include('./song-detail.php');
-                    try{
-                        $song = songDetail();
-                    } catch(Exception $e){
-                        echo $e;
+                    if(isset($_GET['id'])){
+                        try{
+                            $song = songDetail();
+                        } catch(Exception $e){
+                            echo "<i>", $e->getMessage(), "</i>";
+                        }
+                    } else{
+                        echo "<i>No Song (empty id)</i>";
                     }
                 ?>
                 <div class="song-top">
@@ -43,6 +47,17 @@
                             <span class="genre song-detail"><?php if(isset($song)) echo $song['genre'] ?></span>
                         </div>
                     </div>
+                </div>
+                <div>
+                    <?php
+                        if(isset($song) && $song['album_id'] !== null){
+                            include('./albumentry-template.php');
+                            echo "<div>ALBUM</div>";
+                            generateAlbumentry($song);
+                        } else if(isset($song)){
+                            echo "<div><i>SINGLE</i></div>";
+                        }
+                    ?>
                 </div>
             </div>
 
