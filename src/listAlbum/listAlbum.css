@@ -17,8 +17,11 @@ body{
 .flex-album{
     background-color: #141414;
     padding: 20px;
-    margin:10px;
+    cursor: pointer;
     /* flex: 100%; */
+}
+.flex-album:hover{
+    background-color: #3f3d3d;
 }
 
 .image-album{
@@ -55,6 +58,8 @@ span p{
     margin: 5px;
     text-decoration:none;
 }
+
+
 
 @media (max-width: 800px) {
   .flex-container-album {

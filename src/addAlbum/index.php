@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="./style.css" rel="stylesheet">
+    <link href="addAlbum.css" rel="stylesheet">
     <link href="../style.css" rel="stylesheet">
     <title>Document</title>
 </head>
@@ -62,7 +62,7 @@
                     <p>Song</p>
                 </div>
                 <div class="col-input" id="daftarlagu">
-                    <select id="lagu" name="lagu">
+                    <select id="song" name="song">
                     </select>
                 </div>
             </div>
@@ -71,6 +71,6 @@
     </div>
     </div>
 </body>
-<script src="index.js">
+<script src="addAlbum.js">
 </script>
 </html>

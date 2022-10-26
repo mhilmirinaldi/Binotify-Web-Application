@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href="style.css">
+    <link rel = "stylesheet" href="addSong.css">
     <link rel = "stylesheet" href="../style.css">
     <title>Document</title>
 </head>
@@ -81,21 +81,5 @@
     </div>
     
 </body>
-    <script src="index.js"/></script>
+    <script src="addSong.js"/></script>
 </html>
-
-<script>
-function generateAlbum(penyanyi) {
-
-    // window.history.replaceState(null, null, "?penyanyi=" +penyanyi);
-    const xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-        document.getElementById("daftaralbum").innerHTML = this.responseText;
-        }
-    };
-    xhttp.open("GET", "getAlbum.php/?penyanyi=" +penyanyi, true);
-    xhttp.send();
-}
-
-</script>

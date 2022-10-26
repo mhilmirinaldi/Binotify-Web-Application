@@ -18,7 +18,7 @@
 
     $data_awal = ($halaman_aktif * $jumlah_data) - $jumlah_data;
 
-    $stmt = "SELECT judul,year(tanggal_terbit) as tahun,penyanyi, image_path FROM album ORDER BY judul LIMIT $data_awal,$jumlah_data";
+    $stmt = "SELECT album_id,judul,year(tanggal_terbit) as tahun,penyanyi, image_path FROM album ORDER BY judul LIMIT $data_awal,$jumlah_data";
     
     $page_album = mysqli_query($MYSQLICONNECT,$stmt);
 ?>
@@ -30,7 +30,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel = "stylesheet" href="style.css">
+    <link rel = "stylesheet" href="listAlbum.css">
     <link rel = "stylesheet" href="../style.css">
     <title>Document</title>
 </head>
@@ -42,7 +42,7 @@
         <?php
         while($row = mysqli_fetch_assoc($page_album)){
         ?>
-            <div class = "flex-album">
+            <div class = "flex-album" onClick = "window.location='/album?id=<?php echo $row['album_id']?>'" >
                 <image class="image-album" src="<?php echo "/" . $row['image_path'];?>">
                 <div class ="judul"> <?php echo $row['judul']; ?></div>
                 <span>

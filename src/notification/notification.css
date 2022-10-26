@@ -1,0 +1,19 @@
+.notification{
+    display:flex;
+    margin:auto;
+    width:60%;
+    height:100%;
+    /* align-items:center; */
+    /* text-align:center;  */
+    margin-top: 80px;
+}
+.notification img {
+    width: 100px;
+    color :red;
+}
+
+.notification p{
+    margin-left: 10px;
+    font-size: 40px;
+    margin-left: 20px;
+}

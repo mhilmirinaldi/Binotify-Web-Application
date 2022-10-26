@@ -1,4 +1,5 @@
 <select id="album" name="album">
+    <option value=""></option>
     <?php
         if(isset($_GET['penyanyi'])){
             $penyanyi = $_GET['penyanyi'];
