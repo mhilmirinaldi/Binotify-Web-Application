@@ -26,3 +26,15 @@ document.getElementById("fileAudio").addEventListener('change', function (event)
         reader.readAsDataURL(file);
     }
 }, false); 
+
+function generateAlbum(penyanyi) {
+
+    const xhttp = new XMLHttpRequest();
+    xhttp.onreadystatechange = function () {
+        if (this.readyState == 4 && this.status == 200) {
+            document.getElementById("daftaralbum").innerHTML = this.responseText;
+        }
+    };
+    xhttp.open("GET", "getAlbum.php/?penyanyi=" + penyanyi, true);
+    xhttp.send();
+}
