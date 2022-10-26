@@ -47,7 +47,7 @@
             
             $ext = pathinfo($file_image_name, PATHINFO_EXTENSION);
             
-            $image_path = $relative_path . "/" . $album_id . "." . $ext;
+            $image_path = "/" . $relative_path . "/" . $album_id . "." . $ext;
             
             $target_file_image = $target_folder . "/" . $album_id . "." .$ext;
             if (move_uploaded_file($_FILES["fileImage"]["tmp_name"], $target_file_image)  ) {
