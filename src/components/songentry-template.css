@@ -1,0 +1,54 @@
+.song-listentry {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    padding: 7px 10px 7px 10px;
+    border-radius: 7px 7px;
+}
+
+.song-listentry:hover {
+    background-color: #242424;
+}
+
+.song-listentry-thumbnail {
+    height: 40px;
+    margin-right: 15px;
+    width: auto;
+}
+
+.song-listentry-titlepenyanyi {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    flex-grow: 1;
+}
+
+.song-listentry-title {
+    padding: 3px 0px;
+}
+
+.song-listentry-penyanyi {
+    padding: 3px 0px;
+    font-size: 13px;
+    color: rgb(179, 179, 179);
+}
+
+.song-listentry-duration {
+    padding: 3px 0px;
+    font-size: 13px;
+    color: rgb(179, 179, 179);
+}
+
+.song-listentry-tahunterbit {
+    padding: 3px 0px;
+    font-size: 13px;
+    color: rgb(179, 179, 179);
+}
+
+.song-listentry-durationtahunterbit {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}

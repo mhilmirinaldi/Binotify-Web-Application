@@ -3,6 +3,7 @@
         $readable_duration = gmdate("i:s", $song['duration']);
 
         $html = <<<EOF
+        <link href="/components/songentry-template.css" rel="stylesheet">
         <div class="song-listentry" onclick="window.location=`/song?id={$song['song_id']}`">
             <img class="song-listentry-thumbnail" alt="{$song['judul']}" src="{$song['image_path']}">
             <div class="song-listentry-titlepenyanyi">
@@ -11,7 +12,7 @@
             </div>
             <div class="song-listentry-durationtahunterbit">
                 <div class="song-listentry-duration">{$readable_duration}</div>
-                <span class="song-listentry-tahunterbit">{$song['tahun_terbit']}</span>
+                <span class="song-listentry-tahunterbit">{$song['genre']} • {$song['tahun_terbit']}</span>
             </div>
         </div>
         EOF;

@@ -2,11 +2,9 @@
     function songDetail(){
         $config = include('../config.php');
 
-        if(empty($_GET['id'])){
+        if(!(isset($_GET['id']) && $_GET['id'] != '')){
             throw new Exception("400: song id must be provided");
         }
-    
-        $config = include('../config.php');
 
         $db = new PDO($config['db_pdo_connect'], $config['db_user'], $config['db_password']);
         

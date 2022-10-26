@@ -23,7 +23,7 @@
             <div class="main-view">
                 <?php
                     include('./song-detail.php');
-                    if(isset($_GET['id'])){
+                    if(isset($_GET['id']) && $_GET['id'] != ''){
                         try{
                             $song = songDetail();
                         } catch(Exception $e){
@@ -67,7 +67,5 @@
                 </audio>
             </div>
         </div>
-        
-        <script type="text/javascript" src="../utility.js"></script>
     </body>
 </html>
