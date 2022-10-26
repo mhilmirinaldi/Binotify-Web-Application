@@ -19,6 +19,7 @@ h2{
 p{
     font-size:18px;
 }
+
 .image-upload{
     size: 100%;
     margin-bottom:20px;
@@ -35,6 +36,7 @@ p{
 
 #image-input{
     width:250px;
+    height: 250px;
 }
 
 .container{
@@ -85,12 +87,7 @@ input[type=submit] {
 input[type=submit]:hover {
   background-color: #1ed760;
   color: white;
-
-}
-.row:after{
-    content: "";
-    display: table;
-    clear: both;
+  
 }
 
 input::file-selector-button {
@@ -101,8 +98,18 @@ input::file-selector-button {
     background-color: white;
 }
 
+.row:after{
+    content: "";
+    display: table;
+    clear: both;
+}
+
 .row{
     margin-top:10px;
     display:flex;
     align-items:center;
+}
+
+.album{
+    color: black; 
 }

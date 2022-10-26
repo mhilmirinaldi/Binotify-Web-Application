@@ -17,13 +17,17 @@ body{
 .flex-album{
     background-color: #141414;
     padding: 20px;
-    margin:10px;
+    cursor: pointer;
     /* flex: 100%; */
 }
+.flex-album:hover{
+    background-color: #3f3d3d;
+}
+
 
 .image-album{
-    width:200px;
-    height:200px;
+    width:240px;
+    height:240px;
 }
 div.judul{
     font-weight: bold;
@@ -36,7 +40,8 @@ div.judul{
 }
 span{
     display: flex; 
-    margin-top: 0px;
+    margin: 0px;
+    padding: 0px;
     /* justify-content: space-between; */
     font-size:15px
 }
@@ -56,8 +61,16 @@ span p{
     text-decoration:none;
 }
 
+
+
 @media (max-width: 800px) {
   .flex-container-album {
     flex-direction: column;
   }
+}
+
+.penyanyi {
+    padding:0px;
+    margin:0px;
+    font-size: 17px;
 }

@@ -7,7 +7,7 @@ const route = (event) => {
 
 const routes = {
     404 : "",
-
+    
     "/album": "/album",
 };
 
