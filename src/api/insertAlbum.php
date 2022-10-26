@@ -34,6 +34,15 @@
             $genre = $_REQUEST['genre'];
             
             $image_path ="";
+            
+            // create folder for file upload
+            $relative_path = "media/album/" . $album_id;
+
+            $target_folder = getcwd() . "/../" . $relative_path;
+
+            if(!file_exists($target_folder)){
+                mkdir($target_folder);
+            }
             //cek image exist or not
             if(!isset($_FILES["fileImage"])){
                 // give image dummy
@@ -41,31 +50,23 @@
             }
             else{
                 // Relative path save file
+                $file_image = $_FILES["fileImage"]["tmp_name"];
                 $file_image_name = $_FILES["fileImage"]["name"];
-                $filesize = filesize($file_image_name);
+                $filesize = filesize($file_image);
 
                 if ($filesize == 0 or $filesize > 3145728) {
                     $image_path = "/media/album/0/0.png";
                 }
                 else {
-                    $relative_path = "media/album/" . $album_id;
 
-                    $target_folder = getcwd() . "/../" . $relative_path;
-
-                    if(!file_exists($target_folder)){
-                        mkdir($target_folder);
-                    }
-
-                    // image
-                
-                    
+                    // image 
                     
                     $ext = pathinfo($file_image_name, PATHINFO_EXTENSION);
                     
                     $image_path = "/" . $relative_path . "/" . $album_id . "." . $ext;
                     
                     $target_file_image = $target_folder . "/" . $album_id . "." .$ext;
-                    if (move_uploaded_file($_FILES["fileImage"]["tmp_name"], $target_file_image)  ) {
+                    if (move_uploaded_file($file_image, $target_file_image)  ) {
                         
                     } else {
                         $status_upload =0;
