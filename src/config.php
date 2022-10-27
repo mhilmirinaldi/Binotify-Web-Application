@@ -1,6 +1,6 @@
 <?php
     return array(
-        use XAMPP
+        // use XAMPP
         'db_host' => 'localhost',
         'db_database' => 'binotify',
         'db_user' => 'root',
