@@ -43,6 +43,12 @@ select {
     color: #fff;
 }
 
+.main .error {
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+}
+
 .main-view {
     background-color: #121212;
     color: #fff;
@@ -77,7 +83,6 @@ select {
 }
 
 .song-detail:not(:first-child)::before {
-    content: "•";
     margin: 0 0.5rem;
 }
 
@@ -88,6 +93,16 @@ select {
 .song-image img {
     width: 192px;
     height: 192px;
+}
+
+.song-image.change-image input {
+    display: none;
+    
+}
+
+.song-image.change-image label {
+    size:100%;
+    cursor: pointer;
 }
 
 @media screen and (min-width: 768px) {
