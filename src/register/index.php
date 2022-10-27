@@ -47,7 +47,7 @@ function register($data){
     $password = password_hash($password, PASSWORD_DEFAULT);
 
     # Menambahkan user baru ke database
-    mysqli_query($conn, "INSERT INTO user VALUES('', '$email', '$password', '$username', '0')");
+    mysqli_query($conn, "INSERT INTO user(email, password, username, isAdmin) VALUES('$email', '$password', '$username', '0')");
 
     return mysqli_affected_rows($conn);
 }
