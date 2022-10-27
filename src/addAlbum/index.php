@@ -15,8 +15,18 @@
     <?php 
     include ("../navbar/navbargenerate.php");
     require_once("../login/authentication.php");
-    $user_id = $_COOKIE['user_id'];
-     echo_navbar(isAdmin(), $user_id);?>
+    if (isset($_COOKIE['user_id'])){
+        $user_id = $_COOKIE['user_id'];
+        if(isAdmin()){
+            generate_navbar(true, $user_id);
+        }
+        else{
+            // header("LOCATION: /home");
+        }
+    } 
+    else{
+        // header("LOCATION: /home");  
+    }?>
     <div class="main">
     <div class="container">
         <h2>Add Album</h2>
