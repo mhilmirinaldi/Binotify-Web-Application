@@ -41,8 +41,8 @@ p{
 .container{
     border-radius: 5px;
     background-color: #141414;
-    padding: 10px 70px 30px 70px;
-    margin: 0px 100px;
+    padding: 20px 5px;
+    margin: 10px;
 }
 .col-form{
     float:left;

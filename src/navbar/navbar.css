@@ -14,11 +14,11 @@
 }
 
 .navbar a {
-  padding: 6px 6px 6px 32px;
+  padding: 30px 6px 6px 32px;
   text-decoration: none;
-  font-size: 1rem;
+  font-size: 1.2rem;
   font-weight: 500;
-  color: #818181;
+  color: #e5e5e5;
   display: block;
   cursor: pointer;
 }
@@ -47,6 +47,6 @@
 }
 
 .user .nameuser{
-  font-size:25px;
-  margin-left: 20px
+  font-size:24px;
+  margin-left: 12px;
 }

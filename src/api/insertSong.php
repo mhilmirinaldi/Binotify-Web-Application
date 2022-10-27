@@ -76,7 +76,7 @@
 
                 $ext = pathinfo($file_image_name, PATHINFO_EXTENSION);
                 
-                $image_path = "/" . $relative_path . $song_id . "." . $ext;
+                $image_path =$relative_path . $song_id . "." . $ext;
                 
                 $target_file_image = $target_folder . $song_id . "." .$ext;
                 

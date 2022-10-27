@@ -5,7 +5,7 @@
     $stmt = "SELECT * FROM album";
     $daftar_album = mysqli_query($MYSQLICONNECT,$stmt);
 
-    $jumlah_data = 5;
+    $jumlah_data = 4;
     
     $totaldata = mysqli_num_rows($daftar_album);
     $jumlah_paggination = ceil($totaldata / $jumlah_data);
@@ -39,7 +39,9 @@
     <?php include ("../navbar/navbargenerate.php");
     echo_card()?>
     <div class="main">
-        <h1>Daftar Album</h1>
+        <div class="container">
+            <h2>Daftar Album</h2>
+            
         <div class = "flex-container-album">
         <?php
         while($row = mysqli_fetch_assoc($page_album)){
@@ -66,6 +68,7 @@
             </a>
             <?php endfor;?>
         </div>
+    </div>
     </div>
 
 </body>
