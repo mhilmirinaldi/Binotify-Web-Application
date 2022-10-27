@@ -39,7 +39,8 @@
                     <p>Penyanyi</p>
                 </div>
                 <div class="col-input">
-                    <input onChange="generateSong(this.value);" type="text" name="penyanyi" required>
+                    <!-- <input onChange="generateSong(this.value);" type="text" name="penyanyi" required> -->
+                    <input type="text" name="penyanyi" required>
                 </div>
             </div>
             <div class="row">
@@ -58,7 +59,7 @@
                     <input type="date" name="tanggal_terbit" required>
                 </div>
             </div>
-            <div class="row">
+            <!-- <div class="row">
                 <div class="col-form">
                     <p>Song</p>
                 </div>
@@ -66,7 +67,7 @@
                     <select id="song" name="song">
                     </select>
                 </div>
-            </div>
+            </div> -->
             <input type="submit" value="Upload">
         </form>
     </div>
