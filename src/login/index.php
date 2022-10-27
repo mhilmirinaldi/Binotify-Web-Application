@@ -1,5 +1,6 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "binotify");
+$config = include('../config.php');
+$conn = new mysqli($config['db_host'],$config['db_user'],$config['db_password'],$config['db_database']);
 
 if(isset($_POST["login"])){
     $username = $_POST["username"];
@@ -22,6 +23,8 @@ if(isset($_POST["login"])){
             exit;
         } 
 
+        $error = true;
+    } else {
         $error = true;
     }
 }
@@ -60,11 +63,12 @@ if(isset($_POST["login"])){
                 <button type="submit" name="login" class='login'>LOG IN</button>
             </div>
         </form>
+        <div class ='register'>
+            <p>Don't have an account? </p>
+            <a href="../register/" class ='register'>SIGN UP FOR BINOTIFY</a>
+        </div>
     </div>
-    <div class ='register'>
-        <p>Don't have an account? </p>
-        <a href="../register/" class ='register'>SIGN UP FOR BINOTIFY</a>
-    </div>
+    
 
 </body>
 </html>

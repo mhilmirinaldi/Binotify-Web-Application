@@ -7,6 +7,13 @@
 body{
     background-color: black;
 }
+
+.container{
+    border-radius: 5px;
+    background-color: #141414;
+    padding: 20px 5px;
+    margin: 10px;
+}
 .flex-container-album {
     display:flex;
     flex-direction: row;

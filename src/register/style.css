@@ -17,25 +17,53 @@
     height: 100px;
 }
 
+span {
+    color: red;
+    font-size: 14px;
+    padding-bottom: 3px;
+
+}
+
 .center{
     display: grid;
     place-items: center;
     font-weight: bold;
 }
 
+.error{
+    margin-top: 35px;
+    margin-bottom: 0px;
+    text-align: left;
+    letter-spacing: 1px;
+    font-size: 15px;
+    border-color: white;
+    border-width: 1px;
+    border-style: solid;
+    padding: 12px;
+    width: 460px;
+    background-color: red;
+    color: white;
+    font-weight: lighter;
+}
+
 .input_form{
     display: grid;
-    margin-top: 30px;
+    margin-top: 15px;
 }
 
 .form{
     padding-bottom: 12px;
+    margin-top: 12px;
+}
+
+nama.form{
+    margin-top: 0px;
 }
 
 .input{
     padding: 15px;
     width: 450px; 
-    margin-bottom: 15px;
+    margin-bottom: 7px;
 }
 
 .form_bottom{
@@ -52,9 +80,14 @@
     border-style: solid;
     border-radius: 20px;
     padding: 12px;
-    text-decoration: none;
     width: 485px;
-    background-color: rgb(56, 233, 56);
+    background-color: rgb(8, 214, 42);
     color: black;
     font-weight: bold;
+    cursor:pointer;
 }
+
+.login{
+    text-align: center;
+}
+

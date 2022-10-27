@@ -25,6 +25,7 @@
 
 .error{
     margin-top: 35px;
+    margin-bottom: 0px;
     text-align: left;
     letter-spacing: 1px;
     font-size: 15px;
@@ -32,7 +33,7 @@
     border-width: 1px;
     border-style: solid;
     padding: 12px;
-    width: 455px;
+    width: 460px;
     background-color: red;
     color: white;
     font-weight: lighter;
@@ -69,9 +70,10 @@
     padding: 12px;
     text-decoration: none;
     width: 485px;
-    background-color: rgb(56, 233, 56);
+    background-color: rgb(8, 214, 42);
     color: black;
     font-weight: bold;
+    cursor:pointer;
 }
 
 

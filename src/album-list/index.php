@@ -1,10 +1,11 @@
 <?php
-    $MYSQLICONNECT = new mysqli("localhost","root","","binotify");
+    $config = include('../config.php');
+    $MYSQLICONNECT = new  mysqli($config['db_host'],$config['db_user'],$config['db_password'],$config['db_database']);
 
     $stmt = "SELECT * FROM album";
     $daftar_album = mysqli_query($MYSQLICONNECT,$stmt);
 
-    $jumlah_data = 5;
+    $jumlah_data = 4;
     
     $totaldata = mysqli_num_rows($daftar_album);
     $jumlah_paggination = ceil($totaldata / $jumlah_data);
@@ -34,10 +35,16 @@
     <link rel = "stylesheet" href="../style.css">
     <title>Document</title>
 </head>
-    <?php include ("../navbar/navbargenerate.php");
-    echo_card()?>
+<body>
+    <?php 
+    include ("../navbar/navbargenerate.php");
+    require_once("../login/authentication.php");
+    $user_id = $_COOKIE['user_id'];
+     echo_navbar(isAdmin(), $user_id);?>
     <div class="main">
-        <h1>Daftar Album</h1>
+        <div class="container">
+            <h2>Daftar Album</h2>
+            
         <div class = "flex-container-album">
         <?php
         while($row = mysqli_fetch_assoc($page_album)){
@@ -65,7 +72,7 @@
             <?php endfor;?>
         </div>
     </div>
-<body>
+    </div>
 
 </body>
 </html>
