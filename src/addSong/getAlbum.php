@@ -1,6 +1,6 @@
 <link rel = "stylesheet" href="addSong.css">
 <select id="album" name="album">
-    <option >select album</option>
+    <option value="">select album</option>
     <?php
         $config = include('../config.php');
         if(isset($_GET['penyanyi'])){
