@@ -98,7 +98,7 @@
         
         $ext = pathinfo($file_audio_name, PATHINFO_EXTENSION);
         
-        $audio_path = "/" . $relative_path . $song_id .  "." . $ext;
+        $audio_path = $relative_path . $song_id .  "." . $ext;
 
         $target_file_audio = $target_folder . $song_id . "." .$ext;
 

@@ -26,6 +26,7 @@ function  echo_navbar($isAdmin = false, $user_id= 0) {
     }
 
     $html = $html . <<<"EOT"
+    <a href="/login/logout.php"  onclick="route()">Logout</a>
      </div>
     <div class="user"> 
         <img class="logo" src="/static/user.png" > 

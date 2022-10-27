@@ -11,10 +11,11 @@
 
 </head>
 <body>
-    <?php
-        include('../navbar/navbargenerate.php');
-        echo_card();
-    ?>
+    <?php 
+    include ("../navbar/navbargenerate.php");
+    require_once("../login/authentication.php");
+    $user_id = $_COOKIE['user_id'];
+     echo_navbar(isAdmin(), $user_id);?>
 
     <div class="main">
         <div class="main-view">
