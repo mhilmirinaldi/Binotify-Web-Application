@@ -17,10 +17,15 @@
     require_once("../login/authentication.php");
     if (isset($_COOKIE['user_id'])){
         $user_id = $_COOKIE['user_id'];
-        generate_navbar(isAdmin(), $user_id);
+        if(isAdmin()){
+            generate_navbar(true, $user_id);
+        }
+        else{
+            // header("LOCATION: /home");
+        }
     } 
     else{
-        generate_navbar();
+        // header("LOCATION: /home");  
     }?>
     <div class="main">
     <div class="container">
