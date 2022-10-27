@@ -1,10 +1,24 @@
 <?php
     include ("../navbar/navbargenerate.php");
     require_once("../login/authentication.php");
+
+    $tomorrow = strtotime('tomorrow');
+    
+    $is_login = false;
     if(isLogin()){
         $user_id = $_COOKIE['user_id'];
+        $is_login = true;
     } else{
         $user_id = 0;
+        if(isset($_COOKIE['song-play-count'])){
+            $song_play_count = $_COOKIE['song-play-count'] + 1;
+            if($song_play_count <= 3){
+                setcookie('song-play-count', $song_play_count, $tomorrow, "/");
+            }
+        } else{
+            $song_play_count = 1;
+            setcookie('song-play-count', 1, $tomorrow, "/");
+        }
     }
 ?>
 
@@ -30,6 +44,18 @@
             ?>
         </div>
         <div class="main">
+            <?php
+                if(!$is_login && $song_play_count > 3){
+                    echo <<<EOT
+                    <div class="error">
+                        <i>You have reached daily maximum number of play (max 3)<br>
+                            <a href="/register">Register</a> or <a href="/login">Login</a> right now to enjoy unlimited songs
+                        </i>
+                    </div>
+                    EOT;
+                    exit();
+                }
+            ?>
             <?php
                 include('./song-detail.php');
                 if(isset($_GET['id']) && $_GET['id'] != ''){
