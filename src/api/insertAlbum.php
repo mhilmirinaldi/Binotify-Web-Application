@@ -16,11 +16,11 @@
 
     <?php 
         try{ 
-
+            $config = include('../config.php');
             $status_upload = 1;
 
             //connect dbms
-            $MYSQLICONNECT = new mysqli("localhost","root","","binotify");
+            $MYSQLICONNECT = new  mysqli($config['db_host'],$config['db_user'],$config['db_password'],$config['db_database']);
             
             
             // grab data

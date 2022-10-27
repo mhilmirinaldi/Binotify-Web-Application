@@ -1,5 +1,6 @@
 <?php
-    $MYSQLICONNECT = new mysqli("localhost","root","","binotify");
+    $config = include('../config.php');
+    $MYSQLICONNECT = new  mysqli($config['db_host'],$config['db_user'],$config['db_password'],$config['db_database']);
 
     $stmt = "SELECT * FROM album";
     $daftar_album = mysqli_query($MYSQLICONNECT,$stmt);

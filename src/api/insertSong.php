@@ -13,7 +13,7 @@
     <div class="main">
 <?php 
     try{
-        
+        $config = include('../config.php');
         $upload_status = 1;
         // grab data
         $judul = $_REQUEST['judul'];
@@ -24,7 +24,7 @@
         $album_id = $_REQUEST['album'];
 
         //connect dbms
-        $MYSQLICONNECT = new mysqli("localhost","root","","binotify");   
+        $MYSQLICONNECT = new  mysqli($config['db_host'],$config['db_user'],$config['db_password'],$config['db_database']);   
         if ($album_id ==""){
             $stmt = "INSERT INTO song(judul, penyanyi, tanggal_terbit, genre, duration, audio_path,image_path) VALUES ('$judul', '$penyanyi', '$tanggal_terbit', '$genre', '$duration' ,'', '')";
         }

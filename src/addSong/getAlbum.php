@@ -2,12 +2,13 @@
 <select id="album" name="album">
     <option >select album</option>
     <?php
+        $config = include('../config.php');
         if(isset($_GET['penyanyi'])){
             $penyanyi = $_GET['penyanyi'];
         }else{
             $penyanyi = null;
         }
-        $MYSQLICONNECT = new mysqli("localhost","root","","binotify");
+        $MYSQLICONNECT = new  mysqli($config['db_host'],$config['db_user'],$config['db_password'],$config['db_database']);
 
         $penyanyi = $_REQUEST['penyanyi'];
         $stmt = "SELECT album_id, judul FROM album WHERE penyanyi = '$penyanyi'";
