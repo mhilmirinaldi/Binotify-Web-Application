@@ -17,6 +17,13 @@
     height: 100px;
 }
 
+span {
+    color: red;
+    font-size: 13px;
+    margin-top: 0px;
+    padding-top: 0px;
+}
+
 .center{
     display: grid;
     place-items: center;
@@ -52,9 +59,9 @@
     border-style: solid;
     border-radius: 20px;
     padding: 12px;
-    text-decoration: none;
     width: 485px;
     background-color: rgb(56, 233, 56);
     color: black;
     font-weight: bold;
 }
+
