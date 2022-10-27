@@ -34,6 +34,7 @@
     <link rel = "stylesheet" href="../style.css">
     <title>Document</title>
 </head>
+<body>
     <?php include ("../navbar/navbargenerate.php");
     echo_card()?>
     <div class="main">
@@ -65,7 +66,6 @@
             <?php endfor;?>
         </div>
     </div>
-<body>
 
 </body>
 </html>

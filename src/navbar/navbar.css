@@ -32,3 +32,21 @@
 .page {
   margin-left: 250px;
 }
+
+.user {
+  margin-top:10px;
+  display: flex;
+  margin-right:40px;
+  align-items: center;
+  float: right;
+}
+
+.user img{
+  width:25px;
+
+}
+
+.user .nameuser{
+  font-size:25px;
+  margin-left: 20px
+}
