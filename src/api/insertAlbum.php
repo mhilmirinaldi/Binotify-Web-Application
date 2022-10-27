@@ -10,7 +10,9 @@
     
     <?php 
     include ("../navbar/navbargenerate.php");
-    echo_card();?>
+    require_once("../login/authentication.php");
+    $user_id = $_COOKIE['user_id'];
+     echo_navbar(isAdmin(), $user_id);?>
     
     <div class="main">
 

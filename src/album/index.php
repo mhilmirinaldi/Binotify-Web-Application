@@ -17,7 +17,7 @@
     <div>
         <?php
             include("../navbar/navbargenerate.php");
-            echo_card();
+             echo_navbar();
         ?>
     </div>
     <div class="main">
