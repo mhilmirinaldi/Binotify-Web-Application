@@ -1,5 +1,6 @@
 <?php 
-$conn = mysqli_connect("localhost", "root", "", "binotify");
+$config = include('../config.php');
+$conn = new mysqli($config['db_host'],$config['db_user'],$config['db_password'],$config['db_database']);
 
 function register($data){
     global $conn;
@@ -53,12 +54,19 @@ function register($data){
 
 if (isset($_POST["register"])){
     if(register($_POST) > 0){
-        # Link ke halaman login
-        header("Location: ../login/");
+        # Login dan link ke halaman home
+        $username = $_POST["username"];
+
+        $result = mysqli_query($conn, "SELECT * FROM user WHERE username = '$username'");
+        $row = mysqli_fetch_assoc($result);
+
+        setcookie('user_id', $row['user_id'], time()+3000, '/');
+        setcookie('key', hash('sha256', $row['username']), time()+3000, '/');
+            
+        // Link ke halaman home
+        header("Location: ../home/");
     } else {
-        echo "<script>
-                alert('Form tidak valid!');
-            </script>";
+        $error = true;
     }
 }
 ?>
@@ -76,12 +84,17 @@ if (isset($_POST["register"])){
 <div class='header'>
         <img src="../static/logo-with-text.svg" class=img>
 </div>
-
+<div class='center'>
+    <?php if(isset($error)) : ?>
+        <p class='error'>The form is not valid</p>
+    <?php endif; ?>
+</div>
 <div class ='center'>
     <form action="" method="post" name="form" id ="form">
         <div class = 'input_form'>
-            <label for="name" class="form">Name </label>
-            <input type="text" name="name" id="name" placeholder="Name" class="input">
+            <label for="name" id="nama" class="form">Name </label>
+            <input type="text" name="name" id="name1" placeholder="Name" class="input" onblur="validate('name', this.value)">
+            <td><div id='name'></div></td>
 
             <label for="username" class="form">Username </label>
             <input type="text" name="username" id="username1" placeholder="Username" class="input" required onblur="validate('username', this.value)">
@@ -100,10 +113,17 @@ if (isset($_POST["register"])){
             <td><div id='confirm_password'></div></td>
         </div>
         <div class ='form_bottom'>
-            <button type="submit" name="register" class ="register">Register</button>
+            <button type="submit" name="register" class ="register">Sign up</button>
+        </div>
+        <div class ='login'>
+            <p>Have an account? <a href="../login/" class ='login'>Log in.</a> </p> 
         </div>
     </form>
 </div>
+
+
+
+
 
 </body>
 </html>

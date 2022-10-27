@@ -15,7 +15,7 @@ function validate(field, input){
 }
 
 function validate_password1(field, input){
-    if(input == document.getElementById("confirm_password1").value){
+    if(input == document.getElementById("confirm_password1").value && input != ""){
         // Buat object ajax
         var ajax = new XMLHttpRequest();
         
@@ -47,7 +47,7 @@ function validate_password1(field, input){
 }
 
 function validate_password2(field, input){
-    if(input == document.getElementById("password1").value){
+    if(input == document.getElementById("password1").value && input != ""){
         // Buat object ajax
         var ajax = new XMLHttpRequest();
         

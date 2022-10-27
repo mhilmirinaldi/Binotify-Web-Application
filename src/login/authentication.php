@@ -1,5 +1,6 @@
 <?php
-$conn = mysqli_connect("localhost", "root", "", "binotify");
+$config = include('../config.php');
+$conn = new mysqli($config['db_host'],$config['db_user'],$config['db_password'],$config['db_database']);
 
 function isLogin(){
     global $conn;
