@@ -105,7 +105,10 @@
                 <div class="search-song-title-result">
                     <div class="search-song-title">
                         <h2>Songs</h2>
-                        <i>(Pressing change song will automatically save current changes)</i>
+                        <div><i>(Pressing edit song list will discard changes, please press "Save" first)</i><div>
+                        <button type="button"
+                            onclick="window.location=`/album/edit-song.php?id=<?php echo $album['album_id'] ?>`"
+                        >Edit Song List</button>
                     </div>
 
                     <div class="search-song-result">

@@ -52,3 +52,14 @@
     flex-direction: column;
     align-items: flex-end;
 }
+
+.song-listentry.delete .song-delete-button {
+    margin-left: 15px;
+    padding: 5px 10px;
+    background-color: #242424;
+    color: #fff;
+    border-color: #fff;
+    border-radius: 15px;
+    border-style: solid;
+    cursor: pointer;
+}
