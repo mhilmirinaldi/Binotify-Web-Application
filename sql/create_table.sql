@@ -27,3 +27,33 @@ CREATE TABLE Song(
     image_path VARCHAR(256),
     album_id INTEGER REFERENCES album(album_id)
 );
+
+DELIMITER $$
+CREATE TRIGGER total_duration_delete AFTER DELETE ON song 
+FOR EACH ROW 
+BEGIN 
+	UPDATE album 
+    SET album.total_duration = album.total_duration - old.duration 
+    WHERE album.album_id = old.album_id; 
+END;$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER total_duration_insert AFTER INSERT ON song 
+FOR EACH ROW 
+BEGIN 
+    UPDATE album 
+    SET album.total_duration = album.total_duration + new.duration 
+    WHERE album.album_id = new.album_id; 
+END;$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER total_duration_update AFTER UPDATE ON song 
+FOR EACH ROW 
+BEGIN 
+    UPDATE album 
+    SET album.total_duration = album.total_duration + new.duration  - old.duration
+    WHERE album.album_id = new.album_id; 
+END;$$
+DELIMITER ;
