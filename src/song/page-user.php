@@ -1,4 +1,12 @@
-<?php ?>
+<?php
+    include ("../navbar/navbargenerate.php");
+    require_once("../login/authentication.php");
+    if(isLogin()){
+        $user_id = $_COOKIE['user_id'];
+    } else{
+        $user_id = 0;
+    }
+?>
 
 <!DOCTYPE html>
 <html lang="id">
@@ -17,26 +25,26 @@
     </head>
     <body>
         <div>
-            <?php 
-            include ("../navbar/navbargenerate.php");
-            require_once("../login/authentication.php");
-            $user_id = $_COOKIE['user_id'];
-            echo_navbar(isAdmin(), $user_id);?>
+            <?php
+                generate_navbar(false, $user_id);
+            ?>
         </div>
         <div class="main">
-            <div class="main-view">
-                <?php
-                    include('./song-detail.php');
-                    if(isset($_GET['id']) && $_GET['id'] != ''){
-                        try{
-                            $song = songDetail();
-                        } catch(Exception $e){
-                            echo "<i>", $e->getMessage(), "</i>";
-                        }
-                    } else{
-                        echo "<i>No Song (empty id)</i>";
+            <?php
+                include('./song-detail.php');
+                if(isset($_GET['id']) && $_GET['id'] != ''){
+                    try{
+                        $song = songDetail();
+                    } catch(Exception $e){
+                        echo '<div class="error"><i>', $e->getMessage(), "</i></div>";
+                        exit();
                     }
-                ?>
+                } else{
+                    echo '<div class="error"><i>No Song (empty id)</i></div>';
+                    exit();
+                }
+            ?>
+            <div class="main-view">
                 <div class="song-top">
                     <div class="song-image">
                         <img src="<?php if(isset($song)) echo $song['image_path'] ?>">
@@ -45,9 +53,9 @@
                         <div>SONG</div>
                         <h1 class="judul judul-text"><?php if(isset($song)) echo $song['judul'] ?></h1>
                         <div class="song-detail-container">
-                            <span class="penyanyi song-detail"><?php if(isset($song)) echo $song['penyanyi'] ?></span>
-                            <span class="tanggal-terbit song-detail"><?php if(isset($song)) echo $song['tanggal_terbit'] ?></span>
-                            <span class="duration song-detail"><?php if(isset($song)) echo gmdate("i:s", $song['duration']) ?></span>
+                            <span class="penyanyi song-detail"><?php if(isset($song)) echo $song['penyanyi'] ?> •&nbsp</span>
+                            <span class="tanggal-terbit song-detail"><?php if(isset($song)) echo $song['tanggal_terbit'] ?> •&nbsp</span>
+                            <span class="duration song-detail"><?php if(isset($song)) echo gmdate("i:s", $song['duration']) ?> •&nbsp;</span>
                             <span class="genre song-detail"><?php if(isset($song)) echo $song['genre'] ?></span>
                         </div>
                     </div>

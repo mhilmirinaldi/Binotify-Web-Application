@@ -6,12 +6,46 @@
     color: #fff;
 }
 
+
 .main-view {
     background-color: #121212;
     color: #fff;
     display: flex;
     flex-direction: column;
-    padding: 0 2rem 75px 2rem;
+    padding: 0 2rem 15px 2rem;
+}
+
+.main .error {
+    display: flex;
+    justify-content: center;
+    padding-top: 100px;
+}
+
+input {
+    background-color: #181818;
+    color: #fff;
+    border-radius: 7px;
+}
+
+input[type="date"]::-webkit-calendar-picker-indicator {
+    cursor: pointer;
+    border-radius: 4px;
+    margin-right: 2px;
+    opacity: 0.6;
+    filter: invert(0.8);
+}
+  
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
+    opacity: 1
+}
+
+.album-image.change-image input {
+    display: none;
+}
+
+.album-image.change-image label {
+    size:100%;
+    cursor: pointer;
 }
 
 .album-top {
@@ -40,7 +74,6 @@
 }
 
 .album-detail:not(:first-child)::before {
-    content: "•";
     margin: 0 0.5rem;
 }
 
@@ -61,7 +94,7 @@
 }
 
 .search-song-title-result {
-    min-height: 400px;
+    min-height: 200px;
 }
 
 .search-song-result {

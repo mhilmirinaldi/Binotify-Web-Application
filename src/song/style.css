@@ -22,11 +22,11 @@ input[type="date"]::-webkit-calendar-picker-indicator {
     margin-right: 2px;
     opacity: 0.6;
     filter: invert(0.8);
-  }
+}
   
-  input[type="date"]::-webkit-calendar-picker-indicator:hover {
+input[type="date"]::-webkit-calendar-picker-indicator:hover {
     opacity: 1
-  }
+}
 
 select {
     background-color: #181818;
@@ -97,7 +97,6 @@ select {
 
 .song-image.change-image input {
     display: none;
-    
 }
 
 .song-image.change-image label {

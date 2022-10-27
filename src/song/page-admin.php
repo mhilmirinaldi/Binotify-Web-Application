@@ -6,9 +6,13 @@
     
     $config = include('../config.php');
 
-    $user_id = $_COOKIE['user_id'];
     $is_admin = isAdmin();
     $is_login = isLogin();
+    if($is_login){
+        $user_id = $_COOKIE['user_id'];
+    } else{
+        $user_id = null;
+    }
 ?>
 
 <!DOCTYPE html>
@@ -29,7 +33,7 @@
     <body>
         <div>
             <?php
-                echo_navbar($is_admin, $user_id);
+                generate_navbar($is_admin, $user_id);
             ?>
         </div>
 
