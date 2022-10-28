@@ -63,7 +63,7 @@
 
         <div class="main-view">
             <div>
-                <button type="button"
+                <button class="back-to-main-album-page" type="button"
                     onclick="window.location=`/album?id=<?php echo $album['album_id'] ?>`"
                 >Back to the Main Album Page</button>
             </div>

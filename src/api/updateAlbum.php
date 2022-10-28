@@ -12,7 +12,7 @@
         $config = include('../config.php');
         $album_id = $_POST['album_id'];
         $db = new PDO($config['db_pdo_connect'], $config['db_user'], $config['db_password']);
-        $stmt = $db->prepare('SELECT album_id, image_path FROM album WHERE album_id=?');
+        $stmt = $db->prepare('SELECT album_id, judul, tanggal_terbit, image_path FROM album WHERE album_id=?');
         $stmt->execute(array($album_id));
         $album = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -65,8 +65,20 @@
             }
         }
 
+        if(!empty($_POST['tanggal_terbit'])){
+            $tanggal_terbit = $_POST['tanggal_terbit'];
+        } else{
+            $tanggal_terbit = $album['tanggal_terbit'];
+        }
+
+        if(!empty($_POST['judul'])){
+            $judul = $_POST['judul'];
+        } else{
+            $judul = $album['judul'];
+        }
+
         $stmt = $db->prepare('UPDATE album SET judul=?, genre=?, tanggal_terbit=?, image_path=? WHERE album_id=?');
-        $stmt->execute(array($_POST['judul'], $_POST['genre'], $_POST['tanggal_terbit'], $image_path, $album_id));
+        $stmt->execute(array($judul, $_POST['genre'], $tanggal_terbit, $image_path, $album_id));
     }
 
     if(isset($_POST['album_id'])){
