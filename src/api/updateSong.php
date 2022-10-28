@@ -53,7 +53,7 @@
 
                 $ext = pathinfo($file_image_name, PATHINFO_EXTENSION);
                 
-                $image_path =$relative_path . $song_id . "." . $ext;
+                $image_path = $relative_path . $song_id . "." . $ext;
                 
                 $target_file_image = $target_folder . $song_id . "." .$ext;
                 
@@ -69,12 +69,15 @@
         if(empty($file_audio_name)){
            $audio_path = $song['audio_path'];
            $duration = $song['duration'];
-           echo "No files uploaded";
         } else{
             $ext = pathinfo($file_audio_name, PATHINFO_EXTENSION);
-            $audio_path = $relative_path . $song_id .  "." . $ext;
+            $audio_path = $relative_path . $song_id . time() . "." . $ext;
             $duration = $_POST['duration'];
-            $target_file_audio = $target_folder . $song_id . "." .$ext;
+
+            $old_file_audio = getcwd() . "/.." . $song['audio_path'];
+            $target_file_audio = $target_folder . $song_id . time() . "." .$ext;
+
+            unlink($old_file_audio);
             if (move_uploaded_file($_FILES["fileAudio"]["tmp_name"], $target_file_audio) and  $upload_status==1) {   
             } else {
                 $upload_status=0;
