@@ -4,13 +4,16 @@
 Website Binotify merupakan aplikasi musik berbasis web pada BNMO. BNMO adalah mesin yang kuno sehingga hanya kuat untuk menjalankan sebuah DBMS (PostgreSQL/MariaDB/MySQL) dan PHP murni beserta HTML, CSS, dan Javascript vanilla.
 
 ## Daftar Requirement
-- [XAMPP](https://www.apachefriends.org/download.html)
+- XAMPP
 - MySQL
 - PHP
 - Apache
-- [Docker](https://www.docker.com/)
+- Docker
 
 ## Cara intalasi
+1. instal [XAMPP](https://www.apachefriends.org/download.html)
+2. install [Docker](https://www.apachefriends.org/download.html)
+3. Ikuti perintah yang terdapat pada website
 
 ## Cara Menjalankan Aplikasi
 
@@ -22,7 +25,7 @@ Website Binotify merupakan aplikasi musik berbasis web pada BNMO. BNMO adalah me
 5. export file ```binotify.sql``` (yang terdapat pada folder sql) ke dalam database yang telah dibuat sebelumnya
 6. ketikan URL ```localhost/home``` pada browser 
 
-### Menggunakan XAMPP
+### Menggunakan Docker
 1. instal [Docker](https://www.apachefriends.org/download.html)
 2. jalankan perintah ```docker compose up``` pada root folder
 3. aplikasi akan berjalan pada ```localhost:8008```
@@ -31,25 +34,31 @@ Website Binotify merupakan aplikasi musik berbasis web pada BNMO. BNMO adalah me
 ## Tampilan Website
 
 1. Halaman Login
-[Login]()
+![Login](img/login.png)
 
 2. Halaman Register
-![Register]()
+![Register](img/Register.png)
 
 3. Halaman Home
-![Home](https://www.dropbox.com/s/jq5p1fqeq27fr7r/home.png?dl=0)
+![Home](img/home.png)
 
 4. Halaman Daftar Album
-![DaftarAlbum]()
+![DaftarAlbum](img/albumlist.png)
+
 5. Halaman Search, Sort, and Filter
+![Search](img/search.png)
 
 6. Halaman Detail Lagu
+![Detail Lagu](img/detailLagu.png)
 
 7. Halaman Detail Album
+![Detail Album](img/detailAlbum.png)
 
 8. Halaman Tambah Album/Lagu
+![Add Album](img/addAlbum.png)
 
 9. Halaman Daftar User
+![Add Song](img/addSong.png)
 
 ## Pembagian Tugas
 
