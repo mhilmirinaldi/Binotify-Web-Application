@@ -70,7 +70,7 @@
     padding: 12px;
     text-decoration: none;
     width: 485px;
-    background-color: rgb(8, 214, 42);
+    background-color: #1ED760;
     color: black;
     font-weight: bold;
     cursor:pointer;
@@ -87,6 +87,7 @@
 .register p{
     font-size: 16px;
     margin-top: 20px;
+    font-weight: bolder;
 }
 
 .register a{

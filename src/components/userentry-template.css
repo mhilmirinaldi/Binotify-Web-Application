@@ -1,0 +1,42 @@
+.user{
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    padding: 7px 10px 7px 10px;
+    border-radius: 7px 7px;
+    flex-grow: 1;
+    margin-top: 0px;
+}
+
+.user:hover{
+    background-color: #242424;
+}
+
+.number{
+    place-items: center;
+    padding: 15px;
+    min-width: 50px;
+}
+
+.user-email{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    min-width: 500px;
+
+}
+
+.user-username{
+    float:left;
+    padding: 15px;
+    min-width: 300px;
+}
+
+.user-role{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+
