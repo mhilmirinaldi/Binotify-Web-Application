@@ -37,21 +37,6 @@ CREATE TABLE `album` (
   `genre` varchar(64) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data untuk tabel `album`
---
-
-INSERT INTO `album` (`album_id`, `judul`, `penyanyi`, `total_duration`, `image_path`, `tanggal_terbit`, `genre`) VALUES
-(1, 'THE BOOK', 'YOASOBI', 0, '/media/album/1/1.png', '2022-01-01', 'J-Pop'),
-(2, 'manusia', 'Tulus', 0, '/media/album/2/2.png', '2022-02-02', 'pop'),
-(3, 'Parachutes', 'Coldplay', 0, '/media/album/3/3.png', '2022-01-02', 'Indie'),
-(4, 'Kamikaze', 'Eminem', 296, '/media/album/4/4.png', '2022-03-05', 'Rap'),
-(5, 'Waton Guyon', 'Guyon Waton', 375, '/media/album/5/5.png', '2022-05-06', 'dangdut'),
-(6, 'CHARLIE', 'Charlie Puth', 0, '/media/album/6/6.png', '2022-07-01', 'Pop'),
-(7, '÷ (Deluxe)', 'Ed Sheeran', 0, '/media/album/7/7.png', '2021-01-04', 'Pop'),
-(8, 'Bohemian Rhapsody', 'Queen', 0, '/media/album/8/8.png', '2022-05-02', 'Rock'),
-(9, 'stay with me', 'miki matsubara', 0, '/media/album/9/9.png', '2022-10-26', 'pop'),
-(10, 'Karl Song', 'Karl', 0, '/media/album/10/10.jpg', '2022-10-26', 'pop');
 
 -- --------------------------------------------------------
 
@@ -72,18 +57,6 @@ CREATE TABLE `song` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
--- Dumping data untuk tabel `song`
---
-
-INSERT INTO `song` (`song_id`, `judul`, `penyanyi`, `tanggal_terbit`, `genre`, `duration`, `audio_path`, `image_path`, `album_id`) VALUES
-(1, 'Godzilla', 'eminem', '2022-10-18', 'pop', 296, '/media/song/1/1.mp3', '/media/song/1/1.png', 4),
-(2, 'Pingal', 'Guyon Waton', '2022-10-26', 'Dangdut', 375, '/media/song/2/2.weba', '/media/song/2/2.jpg', 5),
-(3, 'stay with me', 'miki matsubara', '2022-10-19', 'J-Pop', 343, '/media/song/3/3.mp3', '/media/song/3/3.png', NULL),
-(4, 'Plastic Love', 'Mariya Takeuchi', '2022-10-19', 'J-Pop', 309, '/media/song/4/4.mp3', '/media/song/4/4.jpg', NULL),
-(7, 'Blue Bird', 'Ikimono Gakari', '2022-10-18', 'Anime', 218, '/media/song/5/5.mp3', '/media/song/5/5.jpg', NULL),
-(8, 'Bohemian Rhapsody', 'Queen', '2022-10-18', 'R&B', 360, '/media/song/6/6.mp3', '/media/song/6/6.jpeg', NULL);
-
---
 -- Trigger `song`
 --
 DELIMITER $$
@@ -100,16 +73,28 @@ CREATE TRIGGER `total_duration_insert` AFTER INSERT ON `song` FOR EACH ROW BEGIN
     SET album.total_duration = album.total_duration + new.duration 
     WHERE album.album_id = new.album_id; 
 END
-$$
+
+
 DELIMITER ;
 DELIMITER $$
-CREATE TRIGGER `total_duration_update` AFTER UPDATE ON `song` FOR EACH ROW BEGIN 
+CREATE TRIGGER `album_id_updatenew` AFTER UPDATE ON `song` FOR EACH ROW BEGIN 
     UPDATE album 
-    SET album.total_duration = album.total_duration + new.duration  - old.duration
+    SET album.total_duration = album.total_duration + new.duration
     WHERE album.album_id = new.album_id; 
 END
 $$
 DELIMITER ;
+
+DELIMITER ;
+DELIMITER $$
+CREATE TRIGGER `album_id_updateold` AFTER UPDATE ON `song` FOR EACH ROW BEGIN 
+    UPDATE album 
+    SET album.total_duration = album.total_duration - old.duration
+    WHERE album.album_id = old.album_id; 
+END
+$$
+DELIMITER ;
+
 
 -- --------------------------------------------------------
 
@@ -124,15 +109,6 @@ CREATE TABLE `user` (
   `username` varchar(256) NOT NULL,
   `isAdmin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
---
--- Dumping data untuk tabel `user`
---
-
-INSERT INTO `user` (`user_id`, `email`, `password`, `username`, `isAdmin`) VALUES
-(1, 'bryan@keren.co.id', 'bryankeren', 'bryan', 1),
-(2, 'bryan@goggle.com', '$2y$10$j3VbqugiYFeCscdmxeYx.O3SQ18Yq4Y.tppUw0hpgOVoDj82OCB9y', 'bryan1', 1),
-(3, 'm@nkds.kjafns', '$2y$10$8hvRlRPryTI2mYve2Fx6/.UBKPqfZwW0Oiv1gag8R/kECEYGXXYh.', 'bryan2', 0);
 
 --
 -- Indexes for dumped tables
