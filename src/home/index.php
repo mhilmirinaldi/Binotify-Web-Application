@@ -11,6 +11,7 @@
     <link rel="icon" href="/static/logo-only.svg" type="image/svg+xml">
     <link href="../addAlbum/addAlbum.css" rel="stylesheet">
     <link href="../style.css" rel="stylesheet">
+    <link href="../search/style.css" rel="stylesheet">
 
 </head>
 <body>
