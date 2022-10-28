@@ -21,11 +21,11 @@
             generate_navbar(true, $user_id);
         }
         else{
-            // header("LOCATION: /home");
+            header("LOCATION: /home");
         }
     } 
     else{
-        // header("LOCATION: /home");  
+        header("LOCATION: /home");  
     }?>
     <div class="main">
     <div class="container">
