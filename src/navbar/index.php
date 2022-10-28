@@ -1,0 +1,1 @@
+<img src="/static/logo-with-text.svg"></div>

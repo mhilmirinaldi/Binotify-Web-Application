@@ -1,0 +1,52 @@
+*{
+  font-family: "Montserrat", sans-serif;
+}
+.navbar {
+    height : 100%;
+    width : 200px;
+    position:fixed;
+    z-index:1;
+    top :0;
+    left:0;
+    background-color:black;
+    overflow-x: hidden;
+
+}
+
+.navbar a {
+  padding: 30px 6px 6px 32px;
+  text-decoration: none;
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #e5e5e5;
+  display: block;
+  cursor: pointer;
+}
+
+.navbar .logo {
+  max-width: 150px;
+  height: auto;
+  margin: 25px;
+}
+
+.page {
+  margin-left: 250px;
+}
+
+.user {
+  margin-top:10px;
+  display: flex;
+  margin-right:40px;
+  align-items: center;
+  float: right;
+}
+
+.user img{
+  width:25px;
+
+}
+
+.user .nameuser{
+  font-size:24px;
+  margin-left: 12px;
+}

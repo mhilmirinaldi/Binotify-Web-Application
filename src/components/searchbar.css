@@ -1,0 +1,13 @@
+.search-song-inputtext {
+    padding: 10px 15px;
+    border-radius: 20px;
+    background-color: #fff;
+    min-width: 250px;
+}
+
+.search-song-submit-button {
+    padding: 10px 15px;
+    border-radius: 20px;
+    background-color: rgb(30, 215, 96);
+    cursor: pointer;
+}

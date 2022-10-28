@@ -1,0 +1,10 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    margin: 0;
+    background-color: #121212;
+    color: #fff;
+}
+
+.main {
+    margin-left: 200px;
+}
