@@ -110,6 +110,9 @@ CREATE TABLE `user` (
   `isAdmin` tinyint(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+INSERT INTO user
+VALUES ('1', 'admin@gmail.com', '$2y$10$3ZinAW3e9QzYXAjuM.cEkuZwnb6eNq8jt4YApAlze2O1pe5rgnXM.', 'admin', '1');
+
 --
 -- Indexes for dumped tables
 --
