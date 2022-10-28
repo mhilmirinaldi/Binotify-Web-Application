@@ -68,12 +68,14 @@
                 <div class="album-top">
 
                     <div class="album-image change-image">
-                        <label for="fileImage">
-                            <img src="<?php echo $album['image_path'] ?>" id="image-input">
-                        </label>
-                        <input type="file" name="fileImage" id="fileImage" accept="image/*" onchange="displayImage(event)">
+                        <div>
+                            <label for="fileImage">
+                                <img src="<?php echo $album['image_path'] ?>" id="image-input">
+                            </label>
+                            <input type="file" name="fileImage" id="fileImage" accept="image/*" onchange="displayImage(event)">
+                        </div>
 
-                        <i>(Tap image to change cover)</i>
+                        <span class="change-image-alt-tap-to-change"><i>(Tap image to change cover)</i></span>
                     </div>
 
                     <div class="album-title-detail">
@@ -105,7 +107,7 @@
                 <div class="search-song-title-result">
                     <div class="search-song-title">
                         <h2>Songs</h2>
-                        <div><i>(Pressing edit song list will discard changes, please press "Save" first)</i><div>
+                        <div class="warning-discard"><i>(Pressing edit song list will discard changes, please press "Save" first)</i></div>
                         <button type="button"
                             onclick="window.location=`/album/edit-song.php?id=<?php echo $album['album_id'] ?>`"
                         >Edit Song List</button>

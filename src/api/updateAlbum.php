@@ -31,7 +31,7 @@
             mkdir($target_folder);
         }
 
-        if(!isset($_FILES["fileImage"])){
+        if(!isset($_FILES["fileImage"]) || empty($_FILES['fileImage']['name'])){
             if(!empty($album['image_path'])){
                 // No file uploaded, keep existing image
                 $image_path = $album['image_path'];

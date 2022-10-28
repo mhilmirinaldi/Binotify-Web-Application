@@ -28,10 +28,6 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     opacity: 1
 }
 
-.change-image-alt-tap-to-change {
-    font-size: 13px;
-    color: rgb(179, 179, 179);
-}
 
 .judul-text {
     font-size: 3.5rem;
@@ -48,10 +44,10 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 }
 
 .main-view {
-    background-color: #121212;
-    color: #fff;
     display: flex;
     flex-direction: column;
+    background-color: #121212;
+    color: #fff;
     padding: 0 2rem 75px 2rem;
 }
 
@@ -108,6 +104,11 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
 .song-image.change-image label {
     size:100%;
     cursor: pointer;
+}
+
+.change-image-alt-tap-to-change {
+    font-size: 13px;
+    color: rgb(179, 179, 179);
 }
 
 @media screen and (min-width: 768px) {

@@ -101,7 +101,7 @@
 
                     <div class="song-album-change-container">
                         <div>ALBUM</div>
-                        <select>
+                        <select name="album_id">
                             <?php
                                 function getAllAlbum($song){
                                     $config = include('../config.php');
@@ -116,6 +116,7 @@
                                 }
 
                                 $albums = getAllAlbum($song);
+                                echo "<option value=''>-- Select an album --</option>";
                                 foreach($albums as $album){
                                     $selected = $album['album_id'] == $song['album_id'] ? 'selected' : '';
                                     echo "<option value={$album['album_id']} $selected>{$album['album_id']} - {$album['judul']}</option>";

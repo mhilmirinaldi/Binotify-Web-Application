@@ -12,7 +12,7 @@
         $config = include('../config.php');
         $song_id = $_POST['song_id'];
         $db = new PDO($config['db_pdo_connect'], $config['db_user'], $config['db_password']);
-        $stmt = $db->prepare('SELECT song_id, image_path, audio_path, duration FROM song WHERE song_id=?');
+        $stmt = $db->prepare('SELECT song_id, image_path, audio_path, album_id, duration FROM song WHERE song_id=?');
         $stmt->execute(array($song_id));
         $song = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -30,8 +30,8 @@
         if(!file_exists($target_folder)){
             mkdir($target_folder);
         }
-
-        if(!isset($_FILES["fileImage"])){
+        
+        if(!isset($_FILES["fileImage"]) || empty($_FILES["fileImage"]['name'])){
             if(!empty($song['image_path'])){
                 // No file uploaded, keep existing image
                 $image_path = $song['image_path'];
@@ -80,8 +80,18 @@
             }
         }
 
-        $stmt = $db->prepare('UPDATE song SET judul=?, genre=?, tanggal_terbit=?, image_path=?, audio_path=?, duration=? WHERE song_id=?');
-        $stmt->execute(array($_POST['judul'], $_POST['genre'], $_POST['tanggal_terbit'], $image_path, $audio_path, $duration, $_POST['song_id']));
+        if(isset($_POST['album_id']) && $_POST['album_id'] != ''){
+            $album_id = $_POST['album_id'];
+        } else{
+            if(!empty($song['album_id'])){
+                $album_id = $song['album_id'];
+            } else{
+                $album_id = null;
+            }
+        }
+
+        $stmt = $db->prepare('UPDATE song SET judul=?, genre=?, tanggal_terbit=?, image_path=?, audio_path=?, duration=?, album_id=? WHERE song_id=?');
+        $stmt->execute(array($_POST['judul'], $_POST['genre'], $_POST['tanggal_terbit'], $image_path, $audio_path, $duration, $album_id, $_POST['song_id']));
     }
 
     if(isset($_POST['song_id'])){
