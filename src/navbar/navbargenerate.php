@@ -27,6 +27,7 @@ function  generate_navbar($isAdmin = false, $user_id= 0) {
         $html = $html . <<<"EOT"
         <a href="/addAlbum"  >Add Album</a>
         <a href="/addSong"  >Add Song</a>
+        <a href="/users"  >List User</a>
         EOT;
     }
 
