@@ -25,7 +25,7 @@ lakukan build image dengan menjalankan file ```build-image.sh``` yang terdapat p
 1. Jalankan Apache dan MySQL pada aplikasi XAMPP
 2. Buka ```localhost/phpmyadmin``` pada browser
 3. Buat Database dengan nama ```binotify```
-4. export file ```binotify.sql``` (yang terdapat pada folder sql) ke dalam database yang telah dibuat sebelumnya
+4. import file ```binotify.sql``` (yang terdapat pada folder sql) ke dalam database yang telah dibuat sebelumnya
 5. ketikan URL ```localhost/home``` pada browser 
 
 ### Menggunakan Docker
@@ -37,7 +37,7 @@ user = root
 password = MYSQL_ROOT_PASSWORD
 ```
 5. Buat Database dengan nama ```binotify```
-6. export file ```binotify.sql``` (yang terdapat pada folder sql) ke dalam database yang telah dibuat sebelumnya
+6. import file ```binotify.sql``` (yang terdapat pada folder sql) ke dalam database yang telah dibuat sebelumnya
 3. aplikasi akan berjalan pada ```localhost:8008/home```
 
 ## Tampilan Website
