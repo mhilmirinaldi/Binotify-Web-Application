@@ -13,9 +13,10 @@
 }
 
 .song-listentry-thumbnail {
-    height: 40px;
-    margin-right: 15px;
+    height: auto;
     width: auto;
+    max-width: 40px;
+    margin-right: 15px;
 }
 
 .song-listentry-titlepenyanyi {
