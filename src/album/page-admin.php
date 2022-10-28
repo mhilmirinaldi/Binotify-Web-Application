@@ -130,10 +130,10 @@
             <input type="hidden" name="album_id" value=<?php echo $album['album_id'] ?>>
         </form>
 
-        <div class="song-control-button-container">
-            <button onclick="location.reload(); return false;">Cancel</button>
-            <button onclick="document.update_album.submit()">Save</button>
-            &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="document.delete_album.submit()">Delete Album</button>
+        <div class="album-control-button-container">
+            <button class="cancel" onclick="location.reload(); return false;">Cancel</button>
+            <button class="save" onclick="document.update_album.submit()">Save</button>
+            <button class="delete" onclick="document.delete_album.submit()">Delete Album</button>
         </div>
     </div>
 
