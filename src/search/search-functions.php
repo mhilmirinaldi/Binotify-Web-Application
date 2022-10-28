@@ -4,9 +4,9 @@
 
         // Search must not be empty
         if(empty($_GET['search'])){
-            throw new Exception("400: search must not be empty");
+        } else{
+            $search = $_GET['search'];
         }
-        $search = $_GET['search'];
 
         // searchby, optional, default search all aspects
         if(!empty($_GET['searchby'])){
@@ -59,7 +59,20 @@
         }
 
         $db = new PDO($config['db_pdo_connect'], $config['db_user'], $config['db_password']);
-        if(!isset($searchby)){
+
+        if(!isset($_GET['search']) || empty($_GET['search'])){
+            if(isset($genre)){
+                $stmt = $db->prepare("SELECT song_id, judul, penyanyi, YEAR(tanggal_terbit) AS tahun_terbit, genre, duration, image_path FROM song
+                                    WHERE genre = ?
+                                    ORDER BY $sortby $sortorder LIMIT $offset,$pagesize");
+                $stmt->execute(array($genre));
+            } else{
+                $stmt = $db->prepare("SELECT song_id, judul, penyanyi, YEAR(tanggal_terbit) AS tahun_terbit, genre, duration, image_path FROM song
+                                    ORDER BY $sortby $sortorder LIMIT $offset,$pagesize");
+                $stmt->execute(array());
+            }
+        }
+        else if(!isset($searchby)){
             if(isset($genre)){
                 $stmt = $db->prepare("SELECT song_id, judul, penyanyi, YEAR(tanggal_terbit) AS tahun_terbit, genre, duration, image_path FROM song
                                     WHERE (judul LIKE ? OR penyanyi LIKE ? OR YEAR(tanggal_terbit) = ?) AND genre = ?
@@ -118,9 +131,10 @@
 
         // Search must not be empty
         if(empty($_GET['search'])){
-            throw new Exception("400: search must not be empty");
+            
+        } else{
+            $search = $_GET['search'];
         }
-        $search = $_GET['search'];
 
         // searchby, optional, default search all aspects
         if(!empty($_GET['searchby'])){
@@ -174,7 +188,16 @@
 
         $db = new PDO($config['db_pdo_connect'], $config['db_user'], $config['db_password']);
         
-        if(!isset($searchby)){
+        if(!isset($_GET['search']) || empty($_GET['search'])){
+            if(isset($genre)){
+                $stmt = $db->prepare("SELECT COUNT(song_id) AS count FROM song
+                                    WHERE genre = ?");
+                $stmt->execute(array($genre));
+            } else{
+                $stmt = $db->prepare("SELECT COUNT(song_id) AS count FROM song");
+                $stmt->execute(array());
+            }
+        } else if(!isset($searchby)){
             if(isset($genre)){
                 $stmt = $db->prepare("SELECT COUNT(song_id) AS count FROM song
                                       WHERE (judul LIKE ? OR penyanyi LIKE ? OR YEAR(tanggal_terbit) = ?) AND genre = ?");

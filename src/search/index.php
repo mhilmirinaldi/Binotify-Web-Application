@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;700&display=swap" rel="stylesheet">
     <link href="./style.css" rel="stylesheet">
     <link href="../style.css" rel="stylesheet">
+    <link href="/components/searchbar.css" rel="stylesheet">
         
     <title>Search Result</title>
     <link rel="icon" href="/static/logo-only.svg" type="image/svg+xml">
@@ -30,9 +31,10 @@
                 <form action="/search" method="GET">
                     <input type="text"
                         name="search"
+                        class="search-song-inputtext"
                         placeholder="What do you want to listen?"
                         value=<?php if(isset($_GET['search'])) echo "{$_GET['search']}"; else echo ""; ?> >
-                    <button type="submit">Search</button>
+                    <button class="search-song-submit-button" type="submit">Search</button>
                     <div class="search-by">
                         <input type="radio" name="searchby" value="all"
                             <?php if(!isset($_GET['searchby']) || $_GET['searchby'] == 'all') echo 'checked'; ?>
@@ -81,17 +83,13 @@
                         <?php
                             include('./search-functions.php');
                             include('../components/songentry-template.php');
-                            if(isset($_GET['search']) && $_GET['search'] != ''){
-                                try {
-                                    $songs = search();
-                                    foreach($songs as $song){
-                                        generateSongentry($song);
-                                    }
-                                } catch(Exception $e){
-                                    echo $e;
+                            try {
+                                $songs = search();
+                                foreach($songs as $song){
+                                    generateSongentry($song);
                                 }
-                            } else {
-                                echo "<i>Empty search key</i>";
+                            } catch(Exception $e){
+                                echo $e;
                             }
                         ?>
                     </div>
@@ -102,18 +100,16 @@
             <div class="search-pagination">
                 <?php
                     include('./pagination-template.php');
-                    if(isset($_GET['search']) && $_GET['search'] != ''){
-                        try{
-                            $count = searchCount();
-                            if(!isset($_GET['page'])){
-                                $currentPage = 1;
-                            } else{
-                                $currentPage = intval($_GET['page']);
-                            }
-                            generatePagination($currentPage, $count->totalpages, parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), $_SERVER["QUERY_STRING"]);
-                        } catch(Exception $e){
-                            echo "<i>", $e->getMessage(), "</i>";
+                    try{
+                        $count = searchCount();
+                        if(!isset($_GET['page'])){
+                            $currentPage = 1;
+                        } else{
+                            $currentPage = intval($_GET['page']);
                         }
+                        generatePagination($currentPage, $count->totalpages, parse_url($_SERVER["REQUEST_URI"], PHP_URL_PATH), $_SERVER["QUERY_STRING"]);
+                    } catch(Exception $e){
+                        echo "<i>", $e->getMessage(), "</i>";
                     }
                 ?>
             </div>

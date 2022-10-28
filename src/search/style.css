@@ -58,11 +58,11 @@ h2 {
 .page-button {
     display: inline-block;
     text-decoration: none;
-    padding: 5px;
+    padding: 5px 10px;
     border: 1px solid;
     color: #fff;
 }
 
 .page-button.active {
-    color: blue;
+    color: rgb(30, 215, 96);
 }
