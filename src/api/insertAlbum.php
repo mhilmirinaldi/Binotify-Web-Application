@@ -44,7 +44,7 @@
             $genre = $_REQUEST['genre'];
             
             // add to database
-            $stmt = "INSERT INTO album(judul, penyanyi, total_duration, genre, tanggal_terbit) VALUES ('$judul', '$penyanyi', 0,'$genre', '$tanggal_terbit')";
+            $stmt = "INSERT INTO album(judul, penyanyi, total_duration, genre, tanggal_terbit, image_path) VALUES ('$judul', '$penyanyi', 0,'$genre', '$tanggal_terbit', '')";
             if(mysqli_query($MYSQLICONNECT, $stmt) and $status_upload = 1){
                 // nothing
             }
@@ -135,6 +135,7 @@
             }
         } catch (Exception $e){
             http_response_code(500);
+            include ("../notification/notification.php");
             echo_notification($desc ="Gagal menambahkan Album", $image = "../notification/failed.png");
         }
     ?>
