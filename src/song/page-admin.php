@@ -64,16 +64,18 @@
                 <div class="main-view">
                     <div class="song-top">
                         <div class="song-image change-image">
-                            <label for="fileImage">
-                                <img src="<?php echo $song['image_path'] ?>" id="image-input">
-                            </label>
-                            <input type="file" name="fileImage" id="fileImage" accept="image/*" onchange="displayImage(event)">
+                            <div>
+                                <label for="fileImage">
+                                    <img src="<?php echo $song['image_path'] ?>" id="image-input">
+                                </label>
+                                <input type="file" name="fileImage" id="fileImage" accept="image/*" onchange="displayImage(event)">
+                            </div>
                             
-                            <i>(Tap image to change cover)</i>
+                            <span class="change-image-alt-tap-to-change"><i>(Tap image to change cover)</i></span>
                         </div>
                         <div class="song-title-detail">
                             <div value=<?php echo $song['song_id'] ?>>SONG</div>
-                            <div>Id: <?php echo $song['song_id'] ?></div>
+                            <div class="id">Id: <?php echo $song['song_id'] ?></div>
 
                             <input type='text' class="judul judul-text"
                                 name="judul"
@@ -95,9 +97,9 @@
                                     value=<?php if(isset($song)) echo $song['genre'] ?>>
                             </div>
                         </div>
-
                     </div>
-                    <div>
+
+                    <div class="song-album-change-container">
                         <div>ALBUM</div>
                         <select>
                             <?php
@@ -122,7 +124,7 @@
                         </select>
                     </div>
 
-                    <div>
+                    <div class="song-audio-change-container">
                         <label for="fileAudio">Change Audio: </label>
                         <input type="file" accept="audio/*" name="fileAudio" id="fileAudio">
                         <input type="hidden" id="duration" name="duration">
@@ -136,9 +138,9 @@
             </form>
 
             <div class="song-control-button-container">
-                <button onclick="location.reload(); return false;">Cancel</button>
-                <button onclick="document.update_song.submit()">Save</button>
-                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<button onclick="document.delete_song.submit()">Delete Song</button>
+                <button class="cancel" onclick="location.reload(); return false;">Cancel</button>
+                <button class="save" onclick="document.update_song.submit()">Save</button>
+                <button class="delete" onclick="document.delete_song.submit()">Delete Song</button>
             </div>
 
             <div class="audioplayer-container">

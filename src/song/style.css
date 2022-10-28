@@ -28,11 +28,9 @@ input[type="date"]::-webkit-calendar-picker-indicator:hover {
     opacity: 1
 }
 
-select {
-    background-color: #181818;
-    color: #fff;
-    border-radius: 5px;
-    padding: 5px;
+.change-image-alt-tap-to-change {
+    font-size: 13px;
+    color: rgb(179, 179, 179);
 }
 
 .judul-text {
@@ -72,6 +70,11 @@ select {
     justify-content: flex-end;
 }
 
+.song-title-detail .id {
+    font-size: 13px;
+    color: rgb(179, 179, 179);
+}
+
 .song-detail-container {
     display: flex;
     flex-direction: row;
@@ -88,6 +91,9 @@ select {
 
 .song-image {
     margin-right: 1.5rem;
+    flex-direction: column;
+    display: flex;
+    align-items: center;
 }
 
 .song-image img {
@@ -110,7 +116,6 @@ select {
         height: 232px;
     }
 }
-
 
 .album-listentry {
     display: flex;
@@ -165,4 +170,36 @@ select {
     display: flex;
     flex-direction: column;
     align-items: flex-end;
+}
+
+.song-album-change-container select {
+    background-color: #181818;
+    color: #fff;
+    border-radius: 5px;
+    padding: 5px;
+    margin-top: 15px;
+}
+
+.song-audio-change-container {
+    margin-top: 15px;
+}
+
+.song-control-button-container {
+    display: flex;
+    flex-grow: 1;
+    justify-content: flex-end;
+    margin: 10px 15px;
+}
+
+.song-control-button-container button {
+    padding: 10px 15px;
+    margin-right: 10px;
+    border-radius: 20px;
+    background-color: rgb(30, 215, 96);
+    cursor: pointer;
+}
+
+.song-control-button-container .delete {
+    margin-left: 25px;
+    background-color: red;
 }
