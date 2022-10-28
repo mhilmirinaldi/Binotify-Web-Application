@@ -14,7 +14,7 @@
         // 'db_database' => 'binotify',
         // 'db_user' => 'root',
         // 'db_password' => 'MYSQL_ROOT_PASSWORD',
-        // 'db_pdo_connect' => "mysql:host=localhost;dbname=binotify",
+        // 'db_pdo_connect' => "mysql:host=db;dbname=binotify",
 
         // 'search_defaultpagesize' => 10
     );
