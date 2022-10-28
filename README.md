@@ -31,12 +31,14 @@ lakukan build image dengan menjalankan file ```build-image.sh``` yang terdapat p
 'db_password' => '',
 'db_pdo_connect' => "mysql:host=localhost;dbname=binotify",
 ```
-3. Buka ```localhost/phpmyadmin``` pada browser
-4. Buat Database dengan nama ```binotify```
-5. import file ```binotify.sql``` (yang terdapat pada folder sql) ke dalam database yang telah dibuat sebelumnya
-6. ketikan URL ```localhost/home``` pada browser 
+3. Sesuaikan ```config.php``` dengan konfigurasi database Anda (password, database name, dsb.)
+4. Buka ```localhost/phpmyadmin``` pada browser
+5. Buat Database dengan nama ```binotify```
+6. import file ```binotify.sql``` (yang terdapat pada folder sql) ke dalam database yang telah dibuat sebelumnya
+7. ketikan URL ```localhost/home``` pada browser 
 
 ### Menggunakan Docker
+```⚠ Peringatan!``` Pada Docker masih terdapat beberapa fitur yang error. Harap menggunakan cara XAMPP.
 1. pada file ```config.php``` pada folder src uncomment config bagian bawah, dan comment pada bagian atas, uncomment bagian berikut ini
 ```
 'db_host' => 'db',
