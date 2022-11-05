@@ -7,12 +7,12 @@
         }else{
             $penyanyi = null;
         }
-        $MYSQLICONNECT = new mysqli($config['db_host'],$config['db_user'],$config['db_password'],$config['db_database']);
-        
+        $db =  new PDO($config['db_pdo_connect'], $config['db_user'], $config['db_password']);
+
         $penyanyi = $_REQUEST['penyanyi'];
-        $stmt = "SELECT song_id, judul FROM song WHERE penyanyi = '$penyanyi' AND (album_id is NULL OR album_id=0)";
-        $page_song = mysqli_query($MYSQLICONNECT,$stmt);
-        while ($row = mysqli_fetch_assoc($page_song)){
+        $stmt = db->prepare("SELECT song_id, judul FROM song WHERE penyanyi = ? AND (album_id is NULL OR album_id=0)");
+        $stmt->execute(array($penyanyi));
+        while ($stmt->fetch(PDO::FETCH_ASSOC)){
     ?>
     <option style="color:black" value="<?php echo $row['song_id']; ?>"><?php echo $row["judul"]; ?></option>
     <?php } ?>

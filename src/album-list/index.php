@@ -1,13 +1,13 @@
 <?php
     $config = include('../config.php');
-    $MYSQLICONNECT = new  mysqli($config['db_host'],$config['db_user'],$config['db_password'],$config['db_database']);
+    $db =  new PDO($config['db_pdo_connect'], $config['db_user'], $config['db_password']);
+    $db->setAttribute( PDO::ATTR_EMULATE_PREPARES, false );      
 
-    $stmt = "SELECT * FROM album";
-    $daftar_album = mysqli_query($MYSQLICONNECT,$stmt);
+    $daftar_album = $db->query("SELECT * FROM album");
 
     $jumlah_data = 4;
     
-    $totaldata = mysqli_num_rows($daftar_album);
+    $totaldata = $daftar_album->rowCount();
     $jumlah_paggination = ceil($totaldata / $jumlah_data);
 
 
@@ -19,9 +19,9 @@
 
     $data_awal = ($halaman_aktif * $jumlah_data) - $jumlah_data;
 
-    $stmt = "SELECT album_id,judul,genre,year(tanggal_terbit) as tahun,penyanyi, image_path FROM album ORDER BY judul LIMIT $data_awal,$jumlah_data";
-    
-    $page_album = mysqli_query($MYSQLICONNECT,$stmt);
+    $stmt = $db->prepare("SELECT album_id,judul,genre,year(tanggal_terbit) as tahun,penyanyi, image_path FROM album ORDER BY judul LIMIT ? , ?");
+    $stmt->execute(array($data_awal,$jumlah_data));
+    // $row=$stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -55,7 +55,7 @@
             
         <div class = "flex-container-album">
         <?php
-        while($row = mysqli_fetch_assoc($page_album)){
+        while($row = $stmt->fetch(PDO::FETCH_ASSOC)){
         ?>
             <div class = "flex-album" onClick = "window.location='/album?id=<?php echo $row['album_id']?>'" >
                 <image class="image-album" src="<?php echo  $row['image_path'];?>">

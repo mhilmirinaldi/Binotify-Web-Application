@@ -8,12 +8,12 @@
         }else{
             $penyanyi = null;
         }
-        $MYSQLICONNECT = new  mysqli($config['db_host'],$config['db_user'],$config['db_password'],$config['db_database']);
-
+        $db =  new PDO($config['db_pdo_connect'], $config['db_user'], $config['db_password']);
+           
         $penyanyi = $_REQUEST['penyanyi'];
-        $stmt = "SELECT album_id, judul FROM album WHERE penyanyi = '$penyanyi'";
-        $page_album = mysqli_query($MYSQLICONNECT,$stmt);
-        while ($row = mysqli_fetch_assoc($page_album)){
+        $stmt = $db->prepare("SELECT album_id, judul FROM album WHERE penyanyi = ?");
+        $stmt->execute(array($penyanyi));
+        while ($row = $stmt->fetch(PDO::FETCH_ASSOC)){
     ?>
     <option style="color:black" value="<?php echo $row['album_id']; ?>"><?php echo $row["judul"]; ?></option>
     <?php } ?>

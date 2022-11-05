@@ -38,25 +38,20 @@
         $album_id = $_REQUEST['album'];
 
         //connect dbms
-        $MYSQLICONNECT = new  mysqli($config['db_host'],$config['db_user'],$config['db_password'],$config['db_database']);   
-        if ($album_id ==""){
-            $stmt = "INSERT INTO song(judul, penyanyi, tanggal_terbit, genre, duration, audio_path,image_path) VALUES ('$judul', '$penyanyi', '$tanggal_terbit', '$genre', '$duration' ,'', '')";
-        }
-        else{
-            $stmt = "INSERT INTO song(judul, penyanyi, tanggal_terbit, genre, duration, audio_path,image_path,album_id) VALUES ('$judul', '$penyanyi', '$tanggal_terbit', '$genre', '$duration' ,'', '', '$album_id')";
-        }
-        // // add to database
-        if(mysqli_query($MYSQLICONNECT, $stmt)){
+        $db =  new PDO($config['db_pdo_connect'], $config['db_user'], $config['db_password']);
             
-        }
-        else {
-             $upload_status = 0;
+        if ($album_id ==""){
+            $stmt = $db->prepare("INSERT INTO song(judul, penyanyi, tanggal_terbit, genre, duration, audio_path,image_path) VALUES (?, ?, ?, ?, ? ,'', '')");
+            $stmt->execute(array($judul, $penyanyi, $tanggal_terbit, $genre, $duration));
+        }   
+        else{
+            $stmt = $db->prepare("INSERT INTO song(judul, penyanyi, tanggal_terbit, genre, duration, audio_path,image_path,album_id) VALUES (?, ?, ?, ?, ? ,'', '', '')");
+            $stmt->execute(array($judul, $penyanyi, $tanggal_terbit, $genre, $duration, $album_id));
         }
 
         // get song_id
-        $stmt = "SELECT MAX(song_id) AS max_id from song";
-        $query = mysqli_query($MYSQLICONNECT, $stmt);
-        $row_song = mysqli_fetch_array($query);
+        $stmt =  $db->query("SELECT MAX(song_id) AS max_id from song");
+        $row_song = $stmt->fetch(PDO::FETCH_ASSOC);
         
         $song_id = $row_song["max_id"];
 
@@ -114,8 +109,8 @@
 
         $target_file_audio = $target_folder . $song_id . "." .$ext;
 
-        $stmt = "UPDATE song SET audio_path = '$audio_path',image_path = '$image_path' WHERE song_id = '$song_id'";
-        if(mysqli_query($MYSQLICONNECT, $stmt) and  $upload_status==1){
+        $stmt = $db->prepare("UPDATE song SET audio_path = ?,image_path = ? WHERE song_id = ?");
+        if($stmt->execute(array($audio_path, $image_path, $song_id))){
         }
         else {
             $upload_status =0;

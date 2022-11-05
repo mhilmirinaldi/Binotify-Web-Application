@@ -6,10 +6,10 @@ function  generate_navbar($isAdmin = false, $user_id= 0) {
     $isAdmin = NULL;
     if($user_id != 0){
         $config = include('../config.php');  
-        $MYSQLICONNECT = new mysqli($config['db_host'],$config['db_user'],$config['db_password'],$config['db_database']);
-        $stmt = "SELECT username,isAdmin FROM user WHERE user_id = '$user_id'";
-        $page_user= mysqli_query($MYSQLICONNECT,$stmt);
-        $user = mysqli_fetch_array($page_user);
+        $db = new PDO($config['db_pdo_connect'], $config['db_user'], $config['db_password']);
+        $stmt = $db->prepare("SELECT username,isAdmin FROM user WHERE user_id = ?");
+        $stmt->execute(array($user_id));
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
         $username = $user["username"];
         $isAdmin = $user["isAdmin"];
     }

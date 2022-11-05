@@ -34,7 +34,7 @@
             $status_upload = 1;
 
             //connect dbms
-            $MYSQLICONNECT = new  mysqli($config['db_host'],$config['db_user'],$config['db_password'],$config['db_database']);
+            $db =  new PDO($config['db_pdo_connect'], $config['db_user'], $config['db_password']);
             
             
             // grab data
@@ -44,19 +44,14 @@
             $genre = $_REQUEST['genre'];
             
             // add to database
-            $stmt = "INSERT INTO album(judul, penyanyi, total_duration, genre, tanggal_terbit, image_path) VALUES ('$judul', '$penyanyi', 0,'$genre', '$tanggal_terbit', '')";
-            if(mysqli_query($MYSQLICONNECT, $stmt) and $status_upload = 1){
-                // nothing
-            }
-            else{
-                $status_upload = 0;
-            }
+            $stmt = $db->prepare("INSERT INTO album(judul, penyanyi, total_duration, genre, tanggal_terbit, image_path) VALUES (?, ?, 0,?, ?, '')");
+            $stmt->execute(array($judul, $penyanyi,$genre, $tanggal_terbit));
+
 
             // get album_id
-            $stmt = "SELECT MAX(album_id) AS max_id from album";
-            $album_id = mysqli_query($MYSQLICONNECT, $stmt);
-            $row_album = mysqli_fetch_array($album_id);
-            $album_id = $row_album["max_id"];
+            $stmt = $db->query("SELECT MAX(album_id) AS max_id from album");
+            $row_album = $stmt->fetch(PDO::FETCH_ASSOC);
+            $album_id = $row_album['max_id'];
             
             $image_path ="";
             
@@ -100,26 +95,10 @@
                 
             }
             
-
-        
-        
-            // $song_id = $_REQUEST['song'];
-            // if ($song_id !=""){
-            //     $stmt = "UPDATE song SET album_id = '$album_id' WHERE song_id = '$song_id'";
-            //     if(mysqli_query($MYSQLICONNECT, $stmt) and $status_upload = 1){
-            //         //nothing
-            //     }
-            //     else{
-            //         $status_upload = 0;
-            //     }
-            // }
             
-            $stmt = "UPDATE album SET image_path = '$image_path' WHERE album_id = '$album_id'";
-            if(mysqli_query($MYSQLICONNECT, $stmt) and  $status_upload==1){
-            }
-            else {
-                $status_upload =0;
-            }
+            $stmt = $db->prepare("UPDATE album SET image_path = ? WHERE album_id = ?");
+            $stmt->execute(array($image_path,$album_id));
+            
             include ("../notification/notification.php");
             if ($status_upload = 1){
                 echo_notification($desc ="Berhasil menambahkan Album");
